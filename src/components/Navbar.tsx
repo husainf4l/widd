@@ -7,6 +7,7 @@ import Link from "next/link";
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [username, setUsername] = useState<string | null>(null);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const handleSignOut = () => {
     if (typeof window !== "undefined") {
@@ -18,6 +19,10 @@ const Navbar = () => {
     }
   };
 
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 0);
@@ -25,28 +30,29 @@ const Navbar = () => {
 
     window.addEventListener("scroll", handleScroll);
 
+    // Close menu when user resizes window from mobile to desktop
+    const handleResize = () => {
+      if (window.innerWidth > 768 && isMenuOpen) {
+        setIsMenuOpen(false);
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+
     // Get username from localStorage
     if (typeof window !== "undefined") {
       const storedUser = localStorage.getItem("user");
       if (storedUser) {
         try {
-          // Parse the user data from localStorage - could be a string or an object
-          const userData = JSON.parse(storedUser); // Changed 'let' to 'const'
+          const userData = JSON.parse(storedUser);
 
-          // Log the raw data to debug
           console.log("User data structure:", userData);
 
-          // Try to access firstName directly - if it exists, use it
           if (userData.firstName) {
             setUsername(userData.firstName);
-          }
-          // Sometimes the data might be nested under a 'user' property
-          else if (userData.user && userData.user.firstName) {
+          } else if (userData.user && userData.user.firstName) {
             setUsername(userData.user.firstName);
-          }
-          // If there's no firstName, try looking for other name properties
-          else {
-            // Prioritize name fields over email
+          } else {
             setUsername(
               userData.name ||
                 userData.displayName ||
@@ -62,13 +68,16 @@ const Navbar = () => {
       }
     }
 
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleResize);
+    };
+  }, [isMenuOpen]);
 
   return (
     <nav
-      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300  ${
-        isScrolled
+      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
+        isScrolled || isMenuOpen
           ? "bg-[#10121A] text-white shadow-lg"
           : "bg-transparent text-white"
       }`}
@@ -76,7 +85,31 @@ const Navbar = () => {
       <div className="container mx-auto px-4 py-4 flex justify-between items-center">
         <Logo size="text-2xl" additionalClasses="mr-4" />
 
-        <div className="flex items-center">
+        {/* Hamburger menu button - visible only on mobile */}
+        <button
+          className="lg:hidden flex flex-col justify-center items-center"
+          onClick={toggleMenu}
+          aria-label="Toggle menu"
+        >
+          <span
+            className={`block w-6 h-0.5 bg-white mb-1 transition-all duration-300 ${
+              isMenuOpen ? "rotate-45 translate-y-1.5" : ""
+            }`}
+          ></span>
+          <span
+            className={`block w-6 h-0.5 bg-white mb-1 transition-all duration-300 ${
+              isMenuOpen ? "opacity-0" : "opacity-100"
+            }`}
+          ></span>
+          <span
+            className={`block w-6 h-0.5 bg-white transition-all duration-300 ${
+              isMenuOpen ? "-rotate-45 -translate-y-1.5" : ""
+            }`}
+          ></span>
+        </button>
+
+        {/* Desktop navigation - hidden on mobile */}
+        <div className="hidden lg:flex items-center">
           <ul className="flex space-x-6 ml-4">
             <li>
               <Link href="/" className="hover:underline">
@@ -114,6 +147,73 @@ const Navbar = () => {
             <Link
               href="/login"
               className="bg-sky-800 hover:bg-sky-900 text-white px-3 py-1 rounded-md transition-colors duration-300"
+            >
+              تسجيل الدخول
+            </Link>
+          )}
+        </div>
+      </div>
+
+      {/* Mobile menu drawer */}
+      <div
+        className={`lg:hidden fixed inset-0 bg-[#10121A] z-40 transition-all duration-300 pt-20 px-4 ${
+          isMenuOpen
+            ? "translate-x-0 opacity-100"
+            : "translate-x-full opacity-0 pointer-events-none"
+        }`}
+      >
+        <ul className="flex flex-col items-center space-y-6 text-xl">
+          <li>
+            <Link
+              href="/"
+              className="hover:text-gray-300"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              الرئيسية
+            </Link>
+          </li>
+          <li>
+            <Link
+              href="/about"
+              className="hover:text-gray-300"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              من نحن
+            </Link>
+          </li>
+          <li>
+            <Link
+              href="/contact"
+              className="hover:text-gray-300"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              تواصل معنا
+            </Link>
+          </li>
+        </ul>
+
+        <div className="mt-12 flex flex-col items-center">
+          {username ? (
+            <div className="flex flex-col items-center">
+              <div className="text-lg mb-4">
+                <span className="mr-2">مرحبًا،</span>
+                <span className="font-bold">{username}</span>
+              </div>
+              <button
+                onClick={() => {
+                  handleSignOut();
+                  setIsMenuOpen(false);
+                }}
+                className="text-red-400 hover:text-red-500 transition-colors duration-300"
+              >
+                تسجيل الخروج
+              </button>
+            </div>
+          ) : (
+            <Link
+              href="/login"
+              className="bg-sky-800 hover:bg-sky-900 text-white px-6 py-2 rounded-md transition-colors duration-300"
+              onClick={() => setIsMenuOpen(false)}
             >
               تسجيل الدخول
             </Link>
