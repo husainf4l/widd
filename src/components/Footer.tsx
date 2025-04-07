@@ -2,19 +2,25 @@ const Footer = () => {
   return (
     <footer className="bg-[#10121A] text-white py-6">
       <div className="container mx-auto text-center space-y-4">
-        <div className="flex justify-center space-x-6">
-          <a href="/privacy" className="text-sm hover:underline">
+        <div className="flex flex-wrap justify-center gap-6 md:gap-8">
+          <a
+            href="/privacy"
+            className="text-sm hover:underline hover:text-cyan-400 transition-colors"
+          >
             سياسة الخصوصية
           </a>
-          <a href="/terms" className="text-sm hover:underline">
+          <a
+            href="/terms"
+            className="text-sm hover:underline hover:text-cyan-400 transition-colors"
+          >
             شروط الاستخدام
           </a>
-          <a href="/contact" className="text-sm hover:underline">
+          <a
+            href="/contact"
+            className="text-sm hover:underline hover:text-cyan-400 transition-colors"
+          >
             تواصل معنا
           </a>
-          <p className="text-sm">
-            &copy; {new Date().getFullYear()} رؤية ٣٤. جميع الحقوق محفوظة.
-          </p>
         </div>
         <p className="text-sm">
           &copy; {new Date().getFullYear()} رؤية ٣٤. جميع الحقوق محفوظة.
