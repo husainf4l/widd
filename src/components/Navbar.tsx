@@ -83,7 +83,9 @@ const Navbar = () => {
       }`}
     >
       <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-        <Logo size="text-2xl" additionalClasses="mr-4" />
+        <Link href="/">
+          <Logo size="text-2xl" additionalClasses="mr-4 cursor-pointer" />
+        </Link>
 
         {/* Hamburger menu button - visible only on mobile */}
         <button
