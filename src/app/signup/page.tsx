@@ -26,7 +26,7 @@ export default function SignupPage() {
     }
   }, [isAuthenticated, router]);
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setError("");
 
@@ -47,10 +47,10 @@ export default function SignupPage() {
     try {
       await register(firstName, lastName, email, password);
       router.push("/dashboard"); // Redirect to dashboard after successful registration
-    } catch (err: any) {
-      console.error("Registration error:", err);
+    } catch (err: unknown) {
+      console.error("Signup error:", err);
       setError(
-        err.response?.data?.message ||
+        (err as Error)?.message ||
           "حدث خطأ أثناء إنشاء الحساب. يرجى المحاولة مرة أخرى."
       );
     } finally {

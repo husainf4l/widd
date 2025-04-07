@@ -23,7 +23,7 @@ export default function LoginPage() {
     }
   }, [isAuthenticated, router]);
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setError("");
     setIsLoading(true);
@@ -31,10 +31,10 @@ export default function LoginPage() {
     try {
       await login(email, password);
       router.push("/dashboard"); // Redirect to dashboard after successful login
-    } catch (err: any) {
+    } catch (err: unknown) {
       console.error("Login error:", err);
       setError(
-        err.response?.data?.message ||
+        (err as Error)?.message ||
           "حدث خطأ أثناء تسجيل الدخول. يرجى المحاولة مرة أخرى."
       );
     } finally {

@@ -3,7 +3,7 @@
 import axios from 'axios';
 import { env } from '../config/env';
 
-const API_URL = `${env.apiUrl}/auth`; // Now using environment variable
+const API_URL = env.authUrl;
 
 export const api = axios.create({
   baseURL: API_URL,
@@ -59,7 +59,8 @@ export const authService = {
         localStorage.setItem('accessToken', response.data.accessToken);
       }
       return response.data;
-    } catch (error) {
+    } catch (_error) {
+      console.error("API error:", _error);
       this.logout();
       return null;
     }

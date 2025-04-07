@@ -1,6 +1,6 @@
 import React from "react";
 import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
+import Image from "next/image";
 
 export default function AboutPage() {
   return (
@@ -202,9 +202,11 @@ export default function AboutPage() {
           <div className="mt-24 mb-16 relative">
             <div className="h-64 md:h-80 lg:h-96 relative overflow-hidden rounded-xl shadow-2xl">
               {/* Banner image */}
-              <img
-                src="/images/upt.jpg"
-                alt="UPT House Banner"
+              <Image
+                src="/path-to-image.jpg"
+                alt="Image description"
+                width={500}
+                height={300}
                 className="w-full h-full object-cover"
               />
 

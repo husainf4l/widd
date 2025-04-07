@@ -1,4 +1,4 @@
 export const env = {
-//   apiUrl: 'http://localhost:4001',
-apiUrl: 'api',
+  apiUrl: process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4001',
+  authUrl: process.env.NEXT_PUBLIC_AUTH_URL || 'http://localhost:4001/auth',
 };

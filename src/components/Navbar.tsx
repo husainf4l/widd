@@ -31,7 +31,7 @@ const Navbar = () => {
       if (storedUser) {
         try {
           // Parse the user data from localStorage - could be a string or an object
-          let userData = JSON.parse(storedUser);
+          const userData = JSON.parse(storedUser); // Changed 'let' to 'const'
 
           // Log the raw data to debug
           console.log("User data structure:", userData);

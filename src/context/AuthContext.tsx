@@ -14,13 +14,13 @@ interface User {
 interface AuthContextType {
   user: User | null;
   loading: boolean;
-  login: (email: string, password: string) => Promise<any>;
+  login: (email: string, password: string) => Promise<unknown>;
   register: (
     firstName: string,
     lastName: string,
     email: string,
     password: string
-  ) => Promise<any>;
+  ) => Promise<unknown>;
   logout: () => void;
   isAuthenticated: boolean;
 }
