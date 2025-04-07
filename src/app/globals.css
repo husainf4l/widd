@@ -10,7 +10,7 @@ html {
     transform: translateY(0);
   }
   50% {
-    transform: translateY(-20px);
+    transform: translateY(-10px);
   }
 }
 
@@ -28,7 +28,7 @@ html {
 }
 
 .animate-float-delay {
-  animation: float-delay 8s ease-in-out infinite 1s;
+  animation: float-delay 8s ease-in-out infinite;
 }
 
 .text-gradient {

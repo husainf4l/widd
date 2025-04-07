@@ -182,12 +182,27 @@ const Hero = () => {
           </h2>
           <div className="w-20 h-1 bg-blue-500 my-6"></div>
           <p className="text-lg md:text-xl  text-white">
-            باستخدام تقنيات الواقع المعزز والذكاء الاصطناعي، تتيح لك "رؤية ٣٤"
-            تجربة مشاهدة غير مسبوقة داخل الملاعب. شاهد الإحصائيات الحية، أعد
-            اللحظات التاريخية، وتفاعل مع تفاصيل المباراة كما لم تفعل من قبل.
+            باستخدام تقنيات الواقع المعزز والذكاء الاصطناعي، تتيح لك &quot;رؤية
+            ٣٤&quot; تجربة مشاهدة غير مسبوقة داخل الملاعب. شاهد الإحصائيات
+            الحية، أعد اللحظات التاريخية، وتفاعل مع تفاصيل المباراة كما لم تفعل
+            من قبل.
           </p>
-          <button className="mt-8 bg-transparent border-2 border-blue-400 hover:bg-blue-600 text-white px-8 py-3 rounded-md font-medium transition-all duration-300 flex items-center group">
+          <button className="mt-8 bg-transparent border-2 border-blue-400 hover:bg-blue-600 hover:border-blue-600 text-white px-8 py-3 rounded-md font-medium transition-all duration-300 flex items-center gap-2 group focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-gray-900">
             <span>ابدأ الآن</span>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-5 w-5 transform transition-transform duration-300 group-hover:translate-x-1 rtl:rotate-180"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M9 5l7 7-7 7"
+              />
+            </svg>
           </button>
         </div>
       </div>

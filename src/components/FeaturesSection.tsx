@@ -1,5 +1,7 @@
 "use client";
 
+import Image from "next/image";
+
 const players = [
   {
     name: "ليام ووكر",
@@ -51,9 +53,11 @@ const FeaturesSection = () => {
               className="bg-[#10121A] rounded-2xl p-6 shadow-lg border border-cyan-600 hover:shadow-cyan-400/50 hover:scale-105 transition-transform duration-300"
             >
               <div className="flex items-center gap-4 mb-6">
-                <img
+                <Image
                   src={player.avatar}
                   alt="Player Avatar"
+                  width={64}
+                  height={64}
                   className="w-16 h-16 rounded-full border-2 border-cyan-400 hover:scale-110 transition-transform duration-300"
                 />
                 <div className="text-right">
