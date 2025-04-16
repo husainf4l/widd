@@ -1,9 +1,9 @@
 "use client";
 
 import axios from 'axios';
-import { env } from '../config/env';
+import { env } from '../../config/env';
 
-const API_URL = env.authUrl;
+const API_URL = `${env.apiUrl}/auth`;
 
 export const api = axios.create({
   baseURL: API_URL,
@@ -14,7 +14,7 @@ export const api = axios.create({
 
 // Add authorization header for protected requests
 api.interceptors.request.use((config) => {
-  const token = localStorage.getItem('accessToken');
+  const token = localStorage.getItem('access_token');
   if (token) {
     config.headers.Authorization = `Bearer ${token}`;
   }
@@ -24,39 +24,43 @@ api.interceptors.request.use((config) => {
 export const authService = {
   async register(firstName: string, lastName: string, email: string, password: string) {
     const response = await api.post('/register', { firstName, lastName, email, password });
-    if (response.data.accessToken) {
-      localStorage.setItem('accessToken', response.data.accessToken);
-      localStorage.setItem('refreshToken', response.data.refreshToken);
+    if (response.data.access_token) {
+      localStorage.setItem('access_token', response.data.access_token);
+      localStorage.setItem('refresh_token', response.data.refresh_token);
     }
     return response.data;
   },
 
   async login(email: string, password: string) {
     const response = await api.post('/login', { email, password });
-    if (response.data.accessToken) {
-      localStorage.setItem('accessToken', response.data.accessToken);
-      localStorage.setItem('refreshToken', response.data.refreshToken);
+    if (response.data.access_token) {
+      localStorage.setItem('access_token', response.data.access_token);
+      localStorage.setItem('refresh_token', response.data.refresh_token);
       localStorage.setItem('user', JSON.stringify(response.data.user));
+      // If liveToken is present, store it as before
+      if (response.data.liveToken) {
+        localStorage.setItem('liveToken', response.data.liveToken);
+      }
     }
     return response.data;
   },
 
   logout() {
-    const refreshToken = localStorage.getItem('refreshToken');
+    const refreshToken = localStorage.getItem('refresh_token');
     api.post('/logout', { refreshToken });
-    localStorage.removeItem('accessToken');
-    localStorage.removeItem('refreshToken');
+    localStorage.removeItem('access_token');
+    localStorage.removeItem('refresh_token');
     localStorage.removeItem('user');
   },
 
   async refreshToken() {
-    const refreshToken = localStorage.getItem('refreshToken');
+    const refreshToken = localStorage.getItem('refresh_token');
     if (!refreshToken) return null;
 
     try {
       const response = await api.post('/refresh-token', { refreshToken });
-      if (response.data.accessToken) {
-        localStorage.setItem('accessToken', response.data.accessToken);
+      if (response.data.access_token) {
+        localStorage.setItem('access_token', response.data.access_token);
       }
       return response.data;
     } catch (_error) {
@@ -67,7 +71,7 @@ export const authService = {
   },
 
   isAuthenticated() {
-    return !!localStorage.getItem('accessToken');
+    return !!localStorage.getItem('access_token');
   },
 
   getCurrentUser() {

@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { useAuth } from "@/context/AuthContext";
 import Footer from "@/components/Footer";
 import ProtectedRoute from "@/components/ProtectedRoute";
+import Link from "next/link";
 
 export default function DashboardPage() {
   const { user, logout } = useAuth();
@@ -104,6 +105,18 @@ export default function DashboardPage() {
                       تحليلات وإحصائيات أداء حسابك
                     </p>
                   </div>
+
+                  <Link
+                    href="/dashboard/livekit"
+                    className="bg-[#1E2235] rounded-lg p-5 hover:bg-[#252a45] transition-all block"
+                  >
+                    <h3 className="text-cyan-400 font-semibold mb-2">
+                      LiveKit Token
+                    </h3>
+                    <p className="text-gray-300 text-sm">
+                      صفحة توليد التوكن الخاصة بـ LiveKit
+                    </p>
+                  </Link>
                 </div>
               </div>
             </div>
