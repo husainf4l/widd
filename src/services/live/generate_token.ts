@@ -63,7 +63,15 @@ export async function fetchRooms() {
   // Fix: unwrap the "rooms" array from the response object
   const data = await res.json();
   const rooms = Array.isArray(data.rooms) ? data.rooms : [];
-  return rooms.map((room: any) => ({
+  return rooms.map((room: {
+    id: string;
+    name: string;
+    livekitRoomId: string;
+    status: string;
+    createdAt: string;
+    updatedAt: string;
+    description: string;
+  }) => ({
     id: room.id,
     name: room.name,
     livekitRoomId: room.livekitRoomId,

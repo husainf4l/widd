@@ -104,7 +104,10 @@ export default function WatchRoomPage() {
   const router = useRouter();
   const params = useParams();
   const roomId = params.roomId as string;
-  const [tokenData, setTokenData] = useState<any>(null);
+  const [tokenData, setTokenData] = useState<{
+    token: string;
+    room?: { livekitRoomId: string };
+  } | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
 
@@ -117,8 +120,9 @@ export default function WatchRoomPage() {
         const data = await generateLivekitToken(roomId);
         setTokenData(data);
         console.log("Token received for room:", roomId);
-      } catch (err: any) {
-        setError(err.message || "حدث خطأ في تحميل البث");
+      } catch (err) {
+        const error = err as Error;
+        setError(error.message || "حدث خطأ في تحميل البث");
         console.error("Error fetching token:", err);
       } finally {
         setLoading(false);

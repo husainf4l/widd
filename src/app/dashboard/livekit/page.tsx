@@ -3,21 +3,13 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { TrackReferenceOrPlaceholder } from "@livekit/components-react";
 
 import {
   generateLivekitToken,
   generatePublisherToken,
   fetchRooms,
 } from "@/services/live/generate_token";
-import {
-  LiveKitRoom,
-  ParticipantTile,
-  GridLayout,
-  useTracks,
-  VideoConference,
-} from "@livekit/components-react";
-import { Track } from "livekit-client";
+import { LiveKitRoom, VideoConference } from "@livekit/components-react";
 import "@livekit/components-styles";
 
 const LIVEKIT_URL = "wss://royaksa-virngt4o.livekit.cloud";
@@ -25,7 +17,11 @@ const LIVEKIT_URL = "wss://royaksa-virngt4o.livekit.cloud";
 export default function LivekitPage() {
   const router = useRouter();
   const [selectedRoom, setSelectedRoom] = useState<string | null>(null);
-  const [tokenData, setTokenData] = useState<any>(null);
+  const [tokenData, setTokenData] = useState<{
+    token: string;
+    role?: string;
+    room?: { livekitRoomId: string };
+  } | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const [debugLoading, setDebugLoading] = useState(false);
@@ -53,10 +49,11 @@ export default function LivekitPage() {
     setError(null);
     setLoading(true);
     try {
-      const data = await generateLivekitToken(livekitRoomId); // ✅ FIXED: use livekitRoomId
+      const data = await generateLivekitToken(livekitRoomId);
       setTokenData(data);
-    } catch (err: any) {
-      setError(err.message || "حدث خطأ");
+    } catch (err) {
+      const error = err as Error;
+      setError(error.message || "حدث خطأ");
     } finally {
       setLoading(false);
     }
@@ -71,8 +68,9 @@ export default function LivekitPage() {
       setTokenData(data);
       // Navigate to the debug room in full screen
       router.push(`/room/alhussein`);
-    } catch (err: any) {
-      setError(err.message || "حدث خطأ");
+    } catch (err) {
+      const error = err as Error;
+      setError(error.message || "حدث خطأ");
     } finally {
       setDebugLoading(false);
     }
@@ -197,7 +195,8 @@ export default function LivekitPage() {
                   <div className="flex gap-2">
                     <button
                       onClick={() =>
-                        handleGoToPublisherRoom(tokenData.room?.livekitRoomId)
+                        tokenData.room?.livekitRoomId && 
+                        handleGoToPublisherRoom(tokenData.room.livekitRoomId)
                       }
                       className="bg-cyan-700 hover:bg-cyan-600 text-white px-4 py-1 rounded-lg text-sm transition-all"
                     >
@@ -205,7 +204,8 @@ export default function LivekitPage() {
                     </button>
                     <button
                       onClick={() =>
-                        handleGoToSubscriberRoom(tokenData.room?.livekitRoomId)
+                        tokenData.room?.livekitRoomId && 
+                        handleGoToSubscriberRoom(tokenData.room.livekitRoomId)
                       }
                       className="bg-indigo-700 hover:bg-indigo-600 text-white px-4 py-1 rounded-lg text-sm transition-all"
                     >

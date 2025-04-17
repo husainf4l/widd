@@ -18,7 +18,7 @@ export default function DashboardPage() {
   const sendTestCaption = async () => {
     try {
       await sendCaptionAsBot("alhussein", " بداية المباراة!", 7000);
-    } catch (e) {
+    } catch {
       alert(" Failed to send caption");
     }
   };

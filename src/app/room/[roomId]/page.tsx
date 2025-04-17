@@ -7,9 +7,7 @@ import {
   VideoConference,
   RoomAudioRenderer,
   MediaDeviceMenu,
-  useTracks,
 } from "@livekit/components-react";
-import { Track } from "livekit-client";
 import "@livekit/components-styles";
 import {
   generateLivekitToken,
@@ -23,7 +21,11 @@ export default function RoomPage() {
   const params = useParams();
   const roomId = params.roomId as string;
 
-  const [tokenData, setTokenData] = useState<any>(null);
+  const [tokenData, setTokenData] = useState<{
+    token: string;
+    role?: string;
+    room?: { livekitRoomId: string };
+  } | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
   const [isPublisher, setIsPublisher] = useState(false);
@@ -44,8 +46,9 @@ export default function RoomPage() {
 
         // Check if user is a publisher based on the role in tokenData
         setIsPublisher(data.role === "publisher");
-      } catch (err: any) {
-        setError(err.message || "حدث خطأ في تحميل الغرفة");
+      } catch (err) {
+        const error = err as Error;
+        setError(error.message || "حدث خطأ في تحميل الغرفة");
       } finally {
         setLoading(false);
       }
