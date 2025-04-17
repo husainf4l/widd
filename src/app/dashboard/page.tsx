@@ -6,6 +6,7 @@ import { useAuth } from "@/context/AuthContext";
 import Footer from "@/components/Footer";
 import ProtectedRoute from "@/components/ProtectedRoute";
 import Link from "next/link";
+import { sendCaptionAsBot } from "@/services/live/send_caption";
 
 export default function DashboardPage() {
   const { user, logout } = useAuth();
@@ -14,9 +15,24 @@ export default function DashboardPage() {
     logout();
   };
 
+  const sendTestCaption = async () => {
+    try {
+      await sendCaptionAsBot("alhussein", " بداية المباراة!", 7000);
+    } catch (e) {
+      alert(" Failed to send caption");
+    }
+  };
+
   return (
     <ProtectedRoute>
       <main className="bg-gradient-to-b from-[#0F1118] to-[#1A1D2B] min-h-screen pt-24 pb-16">
+        <button
+          onClick={sendTestCaption}
+          className="bg-cyan-600 text-white px-4 py-2 rounded-lg"
+        >
+          أرسل تعليق اختباري
+        </button>
+
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}

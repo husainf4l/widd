@@ -1,5 +1,6 @@
 import { env } from '../../config/env';
 
+
 export async function generateLivekitToken(roomName: string) {
   const accessToken = typeof window !== "undefined" ? localStorage.getItem("access_token") : null;
   if (!accessToken) {
@@ -72,3 +73,4 @@ export async function fetchRooms() {
     description: room.description,
   }));
 }
+
