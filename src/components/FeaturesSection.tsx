@@ -1,115 +1,94 @@
 "use client";
 
 import Image from "next/image";
+import React, { useState, useEffect } from "react";
 
-const players = [
-  {
-    name: "ليام ووكر",
-    position: "مهاجم • #9",
-    avatar: "https://i.pravatar.cc/100?img=1",
-    stats: {
-      matches: 24,
-      goals: 15,
-      assists: 8,
-      speed: "33.5 كم/س",
+const FeaturesSection: React.FC = () => {
+  const images = [
+    {
+      src: "/images/roya360.png",
+      alt: "Roya360 Camera – Saudi Innovation",
     },
-  },
-  {
-    name: "صوفيا مينديز",
-    position: "لاعب وسط • #14",
-    avatar: "https://i.pravatar.cc/100?img=3",
-    stats: {
-      matches: 28,
-      goals: 5,
-      assists: 14,
-      passAccuracy: "91%",
+    {
+      src: "/images/roya3602.png",
+      alt: "Roya360 Camera – Saudi Innovation",
     },
-  },
-  {
-    name: "عمر الحسين",
-    position: "مدافع • #5",
-    avatar: "https://i.pravatar.cc/100?img=5",
-    stats: {
-      matches: 30,
-      goals: 2,
-      assists: 6,
-      tackles: 45,
-    },
-  },
-];
+  ];
 
-const FeaturesSection = () => {
+  const [currentImage, setCurrentImage] = useState(0);
+
+  // Auto-slide effect
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImage((prev) => (prev === images.length - 1 ? 0 : prev + 1));
+    }, 5000); // Change image every 5 seconds
+
+    return () => clearInterval(interval);
+  }, [images.length]);
+
+  // Manual navigation
+  const goToSlide = (index: number) => {
+    setCurrentImage(index);
+  };
+
   return (
-    <section className="bg-[#00020a] text-white py-12 px-6 md:px-16">
-      <div className="max-w-6xl mx-auto">
-        <h2 className="text-3xl md:text-4xl font-bold text-cyan-400 mb-10 tracking-wide text-right">
-          اللاعبين المميزين
-        </h2>
-
-        <div className="grid gap-8 md:grid-cols-3 sm:grid-cols-2">
-          {players.map((player, index) => (
-            <div
-              key={index}
-              className="bg-[#10121A] rounded-2xl p-6 shadow-lg border border-cyan-600 hover:shadow-cyan-400/50 hover:scale-105 transition-transform duration-300"
-            >
-              <div className="flex items-center gap-4 mb-6">
+    <section className="w-full py-20 bg-gray-900 text-white">
+      <div className="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center gap-12">
+        {/* Image Slideshow */}
+        <div className="w-full md:w-1/2 relative">
+          <div className="relative overflow-hidden rounded-xl shadow-xl aspect-[10/5]">
+            {images.map((image, index) => (
+              <div
+                key={index}
+                className={`absolute inset-0 transition-opacity duration-1000 ${
+                  index === currentImage ? "opacity-100" : "opacity-0"
+                }`}
+              >
                 <Image
-                  src={player.avatar}
-                  alt="Player Avatar"
-                  width={64}
-                  height={64}
-                  className="w-16 h-16 rounded-full border-2 border-cyan-400 hover:scale-110 transition-transform duration-300"
+                  src={image.src}
+                  alt={image.alt}
+                  fill
+                  className="object-cover w-full h-full"
+                  priority={index === 0}
                 />
-                <div className="text-right">
-                  <h3 className="text-xl font-semibold">{player.name}</h3>
-                  <p className="text-sm text-cyan-300">{player.position}</p>
-                </div>
               </div>
-              <ul className="text-sm space-y-2 text-gray-300 text-right">
-                <li>
-                  <span className="text-cyan-400 font-semibold">
-                    المباريات:
-                  </span>{" "}
-                  {player.stats.matches}
-                </li>
-                <li>
-                  <span className="text-cyan-400 font-semibold">الأهداف:</span>{" "}
-                  {player.stats.goals}
-                </li>
-                <li>
-                  <span className="text-cyan-400 font-semibold">
-                    التمريرات:
-                  </span>{" "}
-                  {player.stats.assists}
-                </li>
-                {player.stats.speed && (
-                  <li>
-                    <span className="text-cyan-400 font-semibold">السرعة:</span>{" "}
-                    {player.stats.speed}
-                  </li>
-                )}
-                {player.stats.passAccuracy && (
-                  <li>
-                    <span className="text-cyan-400 font-semibold">
-                      دقة التمرير:
-                    </span>{" "}
-                    {player.stats.passAccuracy}
-                  </li>
-                )}
-                {player.stats.tackles && (
-                  <li>
-                    <span className="text-cyan-400 font-semibold">
-                      التدخلات:
-                    </span>{" "}
-                    {player.stats.tackles}
-                  </li>
-                )}
-              </ul>
-              <button className="mt-6 w-full bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-400 hover:to-blue-400 text-black font-bold py-3 px-4 rounded-lg transition-all">
-                عرض الملف الشخصي
-              </button>
+            ))}
+
+            {/* Indicators */}
+            <div className="absolute bottom-4 left-0 right-0 flex justify-center gap-2">
+              {images.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => goToSlide(index)}
+                  className={`w-2 h-2 rounded-full transition-all ${
+                    index === currentImage ? "bg-white w-6" : "bg-white/50"
+                  }`}
+                  aria-label={`Go to slide ${index + 1}`}
+                />
+              ))}
             </div>
-          ))}
+          </div>
+        </div>
+
+        {/* Text */}
+        <div className="w-full md:w-1/2">
+          <h3 className="text-3xl font-bold mb-4 leading-tight">
+            رؤيا360 – الرؤية السعودية
+          </h3>
+          <p className="text-lg mb-6 leading-relaxed text-gray-100">
+            تم تطوير <strong>رؤيا360</strong> بفكر سعودي ورؤية تقنية عصرية،
+            لتكون أول كاميرا مدمجة في زي اللاعبين، تمنح الجمهور تجربة مشاهدة
+            استثنائية بزاوية 360° كما لو كان في قلب الملعب. مصممة بدقة، خفيفة
+            الوزن، لاسلكية بالكامل، وتبث الحدث مباشرة إلى تطبيق الواقع
+            الافتراضي.
+          </p>
+          <ul className="list-disc list-inside space-y-2 text-blue-300 text-base">
+            <li>عدسة مزدوجة (أمامية وخلفية) لرؤية محيطية واقعية</li>
+            <li>تصوير فائق الوضوح بدقة 4K</li>
+            <li>اتصال مباشر بالمنصة السحابية وبث فوري</li>
+            <li>مصممة لتحمل الحركة، التعرق، وضغط المباريات</li>
+            <li>ابتكار وصناعة سعودية 100%</li>
+          </ul>
         </div>
       </div>
     </section>

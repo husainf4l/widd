@@ -5,8 +5,16 @@ import { useEffect, useRef } from "react";
 
 const Hero = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
+    // Video autoplay setup
+    if (videoRef.current) {
+      videoRef.current.play().catch((error) => {
+        console.error("Video autoplay error:", error);
+      });
+    }
+
     // Ensure we're running in browser environment
     if (typeof window === "undefined") return;
 
@@ -176,34 +184,43 @@ const Hero = () => {
       />
 
       <div className="container mx-auto px-4 relative z-10 text-white">
-        <div className="max-w-2xl flex flex-col items-start">
-          <h2 className="text-2xl md:text-4xl font-medium mt-4 text-left">
-            مستقبل التفاعل الكروي يبدأ من هنا
-          </h2>
-          <div className="w-20 h-1 bg-blue-500 my-6"></div>
-          <p className="text-lg md:text-xl  text-white">
-            باستخدام تقنيات الواقع المعزز والذكاء الاصطناعي، تتيح لك &quot;رؤية
-            ٣٤&quot; تجربة مشاهدة غير مسبوقة داخل الملاعب. شاهد الإحصائيات
-            الحية، أعد اللحظات التاريخية، وتفاعل مع تفاصيل المباراة كما لم تفعل
-            من قبل.
-          </p>
-          <button className="mt-8 bg-transparent border-2 border-blue-400 hover:bg-blue-600 hover:border-blue-600 text-white px-8 py-3 rounded-md font-medium transition-all duration-300 flex items-center gap-2 group focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-gray-900">
-            <span>ابدأ الآن</span>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5 transform transition-transform duration-300 group-hover:translate-x-1 rtl:rotate-180"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
+        <div className="flex flex-col md:flex-row items-center justify-between gap-10">
+          {/* Left Side Content */}
+          <div className="max-w-2xl flex flex-col items-start">
+            <h2 className="text-2xl md:text-4xl font-medium mt-4 leading-relaxed">
+              نعيشه، نحلله، ونبثه من قلب السعودية،
+            </h2>
+
+            <div className="w-20 h-1 bg-blue-500 my-6"></div>
+            <p className="text-lg md:text-xl text-white ">
+              في السعودية، ما صرت مشاهد… صرت الحدث نفسه. تحس بكل لحظة، تلعبها
+              بعين اللاعب، وتحللها بعقل التقنية. هذي مو مجرد تجربة… هذي بداية
+              لمستقبل يُصنع من هنا، بصوت سعودي وبهوية ما تشبه أحد.
+            </p>
+
+            <button className="mt-8 bg-transparent border-2 border-blue-400 hover:bg-blue-600 hover:border-blue-600 text-white px-8 py-3 rounded-md font-medium transition-all duration-300 flex items-center gap-2 group focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-gray-900">
+              <span className="group-hover:translate-x-1 transition-transform duration-300">
+                جرّب الآن
+              </span>
+            </button>
+          </div>
+
+          {/* Right Side Video */}
+          <div className="w-full md:w-2/5 relative rounded-2xl overflow-hidden border-2 border-blue-400/30 shadow-lg shadow-blue-500/20">
+            <video
+              ref={videoRef}
+              className="w-full h-full object-cover"
+              autoPlay
+              muted
+              loop
+              playsInline
+              poster="/images/hero-bg.webp"
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M9 5l7 7-7 7"
-              />
-            </svg>
-          </button>
+              <source src="/videos/hero1.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+            <div className="absolute inset-0 bg-gradient-to-tr from-black/40 to-transparent pointer-events-none"></div>
+          </div>
         </div>
       </div>
     </section>
