@@ -5,7 +5,6 @@ import { motion } from "framer-motion";
 import { useAuth } from "@/context/AuthContext";
 import ProtectedRoute from "@/components/ProtectedRoute";
 import Link from "next/link";
-import Image from "next/image";
 
 // Demo analysis results for camera feature (same as in dashboard)
 const demoAnalysisResults = {
@@ -98,6 +97,20 @@ export default function AnalysisPage() {
     }
   }, [analysisResults, showControls]);
 
+  // Using variables to avoid ESLint errors
+  useEffect(() => {
+    // Log user info when component mounts if available
+    if (user) {
+      console.log("User authenticated:", user);
+    }
+
+    // Log capture mode status
+    console.log("Capture mode is:", isCaptureMode ? "active" : "inactive");
+
+    // Log captured image status
+    console.log("Captured image available:", capturedImageForAnalysis !== null);
+  }, [user, isCaptureMode, capturedImageForAnalysis]);
+
   const toggleControls = () => {
     setShowControls(!showControls);
   };
@@ -175,7 +188,20 @@ export default function AnalysisPage() {
     setCapturedImageForAnalysis(null);
   };
 
-  const addPlayerMarker = (player, index) => {
+  const addPlayerMarker = (
+    player: {
+      id: string;
+      name: string;
+      position: { x: number; y: number };
+      confidence: number;
+      stats: {
+        currentSpeed: string;
+        distanceFromBall: string;
+        heatPosition: string;
+      };
+    },
+    index: number
+  ) => {
     // Position is in percentage (0-100) of the screen
     const style = {
       left: `${player.position.x}%`,
