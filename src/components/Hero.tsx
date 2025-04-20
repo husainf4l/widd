@@ -188,7 +188,7 @@ const Hero = () => {
           {/* Left Side Content */}
           <div className="max-w-2xl flex flex-col items-start">
             <h2 className="text-2xl md:text-4xl font-medium mt-4 leading-relaxed">
-              نعيشه، نحلله، ونبثه من قلب السعودية،
+              نعيشه، نحلله، ونبثه من قلب السعودية
             </h2>
 
             <div className="w-20 h-1 bg-blue-500 my-6"></div>

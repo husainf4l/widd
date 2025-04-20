@@ -13,7 +13,6 @@ export default function Home() {
       <Hero />
       <FeaturesSection />
       <ImmersiveSportsSection />
-      <AIAnalysisSection />
       <DownloadSection />
       <Footer />
     </main>

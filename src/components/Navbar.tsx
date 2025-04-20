@@ -1,8 +1,9 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Logo from "./Logo";
+import Image from "next/image";
 import Link from "next/link";
+import Logo from "./Logo";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -84,7 +85,9 @@ const Navbar = () => {
     >
       <div className="container mx-auto px-4 py-4 flex justify-between items-center">
         <Link href="/">
-          <Logo size="text-2xl" additionalClasses="mr-4 cursor-pointer" />
+          <div className="mr-4 cursor-pointer">
+            <Logo width={120} height={40} />
+          </div>
         </Link>
 
         {/* Hamburger menu button - visible only on mobile */}
