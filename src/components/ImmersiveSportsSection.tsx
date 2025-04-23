@@ -5,7 +5,7 @@ import React from "react";
 
 const ImmersiveSportsSection: React.FC = () => {
   return (
-    <section className="relative w-full flex items-center justify-center min-h-[70vh] md:min-h-[80vh] bg-gray-200">
+    <section className="relative w-full flex items-center justify-center min-h-[70vh] md:min-h-[80vh] bg-gray-200 dark:bg-gray-800">
       <div className="absolute inset-0">
         <Image
           src="/images/section/a2.png"
@@ -14,7 +14,7 @@ const ImmersiveSportsSection: React.FC = () => {
           className="object-cover"
           priority
         />
-        <div className="absolute inset-0 bg-black/60" />
+        <div className="absolute inset-0 bg-black/60 dark:bg-black/70" />
       </div>
       <div className="max-w-6xl mx-auto px-6 py-20 flex flex-col items-center justify-between relative z-10">
         <div className="w-full mb-10">

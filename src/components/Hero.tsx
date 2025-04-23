@@ -164,52 +164,53 @@ const Hero = () => {
   }, []);
 
   return (
-    <section className="relative h-screen flex items-center">
-      <div className="absolute inset-0 bg-gray-200">
+    <section className="relative min-h-screen h-screen flex flex-col justify-center overflow-hidden">
+      {/* Background image */}
+      <div className="absolute inset-0 z-0 bg-background dark:bg-gray-900">
         <Image
-          src={"/images/hero-bg.webp"} // Path to your image
-          alt="Hero Background" // Alt text for accessibility
-          fill // Use the fill prop for responsive images
-          className="object-cover" // Use CSS for object-fit
+          src="/images/hero-bg.webp"
+          alt="Hero Background"
+          fill
+          className="object-cover"
           priority
         />
-        <div className="absolute inset-0 bg-black/50"></div>
+        <div className="absolute inset-0 bg-black/50 dark:bg-black/70"></div>
       </div>
 
       {/* Neural Network Animation */}
       <canvas
         ref={canvasRef}
         className="absolute inset-0 z-[1]"
-        style={{ opacity: 0.85 }} // Increased overall canvas opacity
+        style={{ opacity: 0.85 }}
       />
 
-      <div className="container mx-auto px-4 relative z-10 text-white">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-10">
+      <div className="container mx-auto px-4 relative z-10 text-white py-10 my-auto">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-16 md:gap-10 w-full">
           {/* Left Side Content */}
-          <div className="max-w-2xl flex flex-col items-start">
-            <h2 className="text-2xl md:text-4xl font-medium mt-4 leading-relaxed">
-              نعيشه، نحلله، ونبثه من قلب السعودية
+          <div className="max-w-2xl flex flex-col items-center md:items-start w-full md:w-auto">
+            <h2 className="text-2xl md:text-4xl font-medium mt-6 leading-relaxed text-center md:text-right">
+              ننشر الوِدّ بشغف اللعبة.
             </h2>
 
-            <div className="w-20 h-1 bg-blue-500 my-6"></div>
-            <p className="text-lg md:text-xl text-white ">
-              في السعودية، ما صرت مشاهد… صرت الحدث نفسه. تحس بكل لحظة، تلعبها
-              بعين اللاعب، وتحللها بعقل التقنية. هذي مو مجرد تجربة… هذي بداية
-              لمستقبل يُصنع من هنا، بصوت سعودي وبهوية ما تشبه أحد.
+            <div className="w-20 h-1 bg-blue-500 my-6 mx-auto md:mr-0 md:ml-auto"></div>
+            <p className="text-lg md:text-xl text-white text-center md:text-right">
+              وُدّ منظومة سعودية ذكية، تمزج بين الواقع المعزز، الواقع الافتراضي،
+              والذكاء الاصطناعي — مبنية على القيم، ومسؤولة تجاه الإنسان
+              والمجتمع.
             </p>
 
-            <button className="mt-8 bg-transparent border-2 border-blue-400 hover:bg-blue-600 hover:border-blue-600 text-white px-8 py-3 rounded-md font-medium transition-all duration-300 flex items-center gap-2 group focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-gray-900">
+            <button className="mt-8 bg-transparent border-2 border-blue-400 hover:bg-blue-600 hover:border-blue-600 text-white px-8 py-3 rounded-md font-medium transition-all duration-300 flex items-center gap-2 group focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-gray-900 mx-auto md:mr-0 md:ml-auto">
               <span className="group-hover:translate-x-1 transition-transform duration-300">
-                جرّب الآن
+                شاهد التجربة
               </span>
             </button>
           </div>
 
           {/* Right Side Video */}
-          <div className="w-full md:w-2/5 relative rounded-2xl overflow-hidden border-2 border-blue-400/30 shadow-lg shadow-blue-500/20">
+          <div className="w-full md:w-1/2 relative rounded-2xl overflow-hidden border-2 border-blue-400/30 shadow-lg shadow-blue-500/20 mt-8 md:mt-0 mb-6">
             <video
               ref={videoRef}
-              className="w-full h-full object-cover"
+              className="w-full h-[350px] md:h-[450px] object-cover"
               autoPlay
               muted
               loop

@@ -1,95 +1,85 @@
 "use client";
 
+import React from "react";
 import Image from "next/image";
-import React, { useState, useEffect } from "react";
+import Link from "next/link";
 
 const FeaturesSection: React.FC = () => {
-  const images = [
+  const products = [
     {
-      src: "/images/widd360.png",
-      alt: "Widd360 Camera – Saudi Innovation",
+      id: "widdvar",
+      name: "WIDDvar",
+      description: "تقنية تحكيم متطورة بالذكاء الاصطناعي",
+      imageSrc: "/images/section/a1.png",
+      link: "/products/widdvar",
     },
     {
-      src: "/images/widd3602.png",
-      alt: "Widd360 Camera – Saudi Innovation",
+      id: "widdpost",
+      name: "WIDDpost",
+      description: "تحليل متكامل لما بعد المباراة",
+      imageSrc: "/images/section/a2.png",
+      link: "/products/widdpost",
+    },
+    {
+      id: "widdone",
+      name: "WIDDone",
+      description: "حل متكامل للأندية بتكلفة معقولة",
+      imageSrc: "/images/section/a3.png",
+      link: "/products/widdone",
+    },
+    {
+      id: "widd360",
+      name: "Widd360",
+      description: "كاميرا بزاوية 360° مدمجة في زي اللاعبين",
+      imageSrc: "/images/widd360.png",
+      link: "/products/widd360",
+    },
+    {
+      id: "varhome",
+      name: "VARhome",
+      description:
+        "تعرض المباراة مباشرة في وضع الواقع المعزز، كتجربة جماعية تعزز التفاعل دون أي عزلة. وعند اللحظات الحاسمة، تتحوّل النظارة لتجربة واقع افتراضي قصيرة، ثم تعود بسلاسة",
+      imageSrc: "/images/section/a1.png",
+      link: "/products/widd-var-one",
+    },
+    {
+      id: "varstudiom",
+      name: "VARstudiom",
+      description:
+        "تعرض الإحصائيات على الزجاج الشفاف وأنت وسط الجمهور. عند اللحظات الحاسمة، تتحوّل لتجربة VR قصيرة، ثم تعود للواقع بسلاسة",
+      imageSrc: "/images/section/a2.png",
+      link: "/products/widd-var",
     },
   ];
 
-  const [currentImage, setCurrentImage] = useState(0);
-
-  // Auto-slide effect
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentImage((prev) => (prev === images.length - 1 ? 0 : prev + 1));
-    }, 5000); // Change image every 5 seconds
-
-    return () => clearInterval(interval);
-  }, [images.length]);
-
-  // Manual navigation
-  const goToSlide = (index: number) => {
-    setCurrentImage(index);
-  };
-
   return (
-    <section className="w-full py-20 bg-gray-900 text-white">
-      <div className="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center gap-12">
-        {/* Image Slideshow */}
-        <div className="w-full md:w-1/2 relative">
-          <div className="relative overflow-hidden rounded-xl shadow-xl aspect-[10/5]">
-            {images.map((image, index) => (
-              <div
-                key={index}
-                className={`absolute inset-0 transition-opacity duration-1000 ${
-                  index === currentImage ? "opacity-100" : "opacity-0"
-                }`}
-              >
-                <Image
-                  src={image.src}
-                  alt={image.alt}
-                  fill
-                  className="object-cover w-full h-full"
-                  priority={index === 0}
-                />
-              </div>
-            ))}
-
-            {/* Indicators */}
-            <div className="absolute bottom-4 left-0 right-0 flex justify-center gap-2">
-              {images.map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => goToSlide(index)}
-                  className={`w-2 h-2 rounded-full transition-all ${
-                    index === currentImage ? "bg-white w-6" : "bg-white/50"
-                  }`}
-                  aria-label={`Go to slide ${index + 1}`}
-                />
-              ))}
+    <section className="w-full bg-background dark:bg-gray-900 text-foreground dark:text-white overflow-hidden p-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        {products.map((product) => (
+          <Link
+            key={product.id}
+            href={product.link}
+            className="relative flex flex-col justify-end overflow-hidden group transition-all duration-700 aspect-[6/4] rounded-xl cursor-pointer"
+          >
+            {/* Background Image without Overlay */}
+            <div className="absolute inset-0 z-0">
+              <Image
+                src={product.imageSrc}
+                alt={product.name}
+                fill
+                className="object-cover w-full h-full transition-transform duration-700 group-hover:scale-105"
+              />
             </div>
-          </div>
-        </div>
 
-        {/* Text */}
-        <div className="w-full md:w-1/2">
-          <h3 className="text-3xl font-bold mb-4 leading-tight">
-            رؤيا360 – الرؤية السعودية
-          </h3>
-          <p className="text-lg mb-6 leading-relaxed text-gray-100">
-            تم تطوير <strong>رؤيا360</strong> بفكر سعودي ورؤية تقنية عصرية،
-            لتكون أول كاميرا مدمجة في زي اللاعبين، تمنح الجمهور تجربة مشاهدة
-            استثنائية بزاوية 360° كما لو كان في قلب الملعب. مصممة بدقة، خفيفة
-            الوزن، لاسلكية بالكامل، وتبث الحدث مباشرة إلى تطبيق الواقع
-            الافتراضي.
-          </p>
-          <ul className="list-disc list-inside space-y-2 text-blue-300 text-base">
-            <li>عدسة مزدوجة (أمامية وخلفية) لرؤية محيطية واقعية</li>
-            <li>تصوير فائق الوضوح بدقة 4K</li>
-            <li>اتصال مباشر بالمنصة السحابية وبث فوري</li>
-            <li>مصممة لتحمل الحركة، التعرق، وضغط المباريات</li>
-            <li>ابتكار وصناعة سعودية 100%</li>
-          </ul>
-        </div>
+            {/* Content with subtle gradient for readability */}
+            <div className="relative z-10 p-4 md:p-6 space-y-2 w-full bg-gradient-to-t from-black/40 via-black/20 to-transparent rounded-b-xl">
+              <h3 className="text-xl md:text-2xl font-bold tracking-tight">
+                {product.name}
+              </h3>
+              <p className="text-sm text-white">{product.description}</p>
+            </div>
+          </Link>
+        ))}
       </div>
     </section>
   );
