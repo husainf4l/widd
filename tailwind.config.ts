@@ -1,6 +1,7 @@
 import type { Config } from "tailwindcss";
 
 const config: Config = {
+  // Always use dark mode by default
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
@@ -12,7 +13,7 @@ const config: Config = {
         primary: "#2B5B63", // Deep Teal Blue
         secondary: "#E5A940", // Warm Mustard Yellow
         black: "#000000", // Matte Black
-        background: "#F3F2EE", // Light Off-White
+        background: "#0F172A", // Dark background instead of light off-white
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",

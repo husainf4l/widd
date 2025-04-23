@@ -1,8 +1,5 @@
 import React from "react";
-import {
-  PlayerAnalysis,
-  PlayerAnalysisClass,
-} from "@/services/analysis/demoData";
+import { PlayerAnalysisClass } from "@/services/analysis/demoData";
 
 interface DemoAnalysisDataProps {
   analysis: PlayerAnalysisClass;

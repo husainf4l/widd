@@ -19,12 +19,15 @@ const ImmersiveSportsSection: React.FC = () => {
       <div className="max-w-6xl mx-auto px-6 py-20 flex flex-col items-center justify-between relative z-10">
         <div className="w-full mb-10">
           <h2 className="text-4xl md:text-5xl font-extrabold mb-6 text-white drop-shadow-lg text-center">
-            مقعدك بعيد؟ قربناه لك.
+            عِش اللحظة وكأنك على خط التماس
           </h2>
           <div className="w-20 h-1 bg-blue-500 mb-6 mx-auto" />
-          <p className="text-xl  text-white  mb-8 drop-shadow-lg text-center max-w-3xl mx-auto">
+          <p className="text-xl  text-white  mb-4  drop-shadow-lg text-center max-w-3xl mx-auto">
             مع كاميراتنا الـ360° المنتشرة في كل زاوية من الاستاد، ما في لقطة
             تفوتك. عِش اللحظة وكأنك على خط التماس… مهما كان مقعدك.
+          </p>
+          <p className="text-sm text-white mb-8  text-center max-w-3xl mx-auto">
+            اقصى مدة مسموحة ١ دقيقة
           </p>
         </div>
 

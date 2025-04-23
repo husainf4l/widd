@@ -1,5 +1,28 @@
 import React from "react";
-import { Player } from "@/services/analysis/demoData";
+
+// Define the Player interface locally
+interface Player {
+  id: string;
+  name: string;
+  avatar: string;
+  confidence: number;
+  stats: {
+    jerseyNumber: number;
+    team: string;
+    heatPosition: string;
+    currentSpeed: string;
+    distanceFromBall: string;
+    realTimeMetrics?: {
+      heartRate: string;
+      sprintCount: number;
+    };
+    performance?: {
+      goalsScored: number;
+      passAccuracy: string;
+      distanceCovered: string;
+    };
+  };
+}
 
 interface PlayersTabProps {
   players: Player[];

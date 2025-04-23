@@ -1,5 +1,32 @@
 import React from "react";
-import { MatchStatistics, MatchEvent } from "@/services/analysis/demoData";
+
+// Define the interfaces locally
+interface MatchStatistics {
+  shots: {
+    home: number;
+    away: number;
+  };
+  shotsOnTarget: {
+    home: number;
+    away: number;
+  };
+  corners: {
+    home: number;
+    away: number;
+  };
+}
+
+interface MatchEvent {
+  time: string;
+  type: "goal" | "yellowCard" | "redCard" | "substitution";
+  player?: string;
+  team: string;
+  description: string;
+  playersInvolved?: {
+    in: string;
+    out: string;
+  };
+}
 
 interface StatsTabProps {
   matchStatistics: MatchStatistics;

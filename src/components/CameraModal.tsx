@@ -46,7 +46,6 @@ const CameraModal: React.FC<CameraModalProps> = ({
   );
   const videoRef = useRef<HTMLVideoElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const streamRef = useRef<MediaStream | null>(null);
 
   if (!isOpen) return null;
 

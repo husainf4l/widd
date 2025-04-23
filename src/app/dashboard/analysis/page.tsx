@@ -3,7 +3,6 @@
 import React from "react";
 import { useAuth } from "@/context/AuthContext";
 import ProtectedRoute from "@/components/ProtectedRoute";
-import Link from "next/link";
 import {
   PlayerAnalysis,
   MatchDetails,
@@ -12,12 +11,12 @@ import {
 import ScoreTimeOverlay from "@/components/analysis/ScoreTimeOverlay";
 import CameraView from "@/components/analysisx/CameraView";
 import BackButton from "@/components/icons/BackButton";
-import DemoAnalysisData from "@/components/analysis/DemoAnalysisData";
 import CloseIcon from "@/components/icons/CloseIcon";
 import PlayerAnalysisDemo from "@/components/analysis/PlayerAnalysisDemo";
 
 export default function AnalysisPage() {
-  const { user } = useAuth();
+  // Removed unused user variable
+  const { } = useAuth();
   // Only one player analysis, so no need for state or fetching
   const analysis = PlayerAnalysis;
   const matchInfo: MatchDetails = demoMatchDetails;

@@ -2,95 +2,91 @@
 import React, { useState, useEffect } from "react";
 import dynamic from "next/dynamic";
 
+// Define proper type for recharts components
+type RechartsComponentType = React.ComponentType<Record<string, unknown>>;
+
 // Dynamically import recharts components with no SSR to avoid React 19 compatibility issues
 const ResponsiveContainer = dynamic(
   () =>
     import("recharts").then(
-      (mod) => mod.ResponsiveContainer as unknown as React.ComponentType<any>
+      (mod) => mod.ResponsiveContainer as unknown as RechartsComponentType
     ),
   { ssr: false }
 );
 const LineChart = dynamic(
   () =>
     import("recharts").then(
-      (mod) => mod.LineChart as unknown as React.ComponentType<any>
+      (mod) => mod.LineChart as unknown as RechartsComponentType
     ),
   { ssr: false }
 );
 const Line = dynamic(
   () =>
     import("recharts").then(
-      (mod) => mod.Line as unknown as React.ComponentType<any>
+      (mod) => mod.Line as unknown as RechartsComponentType
     ),
   { ssr: false }
 );
 const BarChart = dynamic(
   () =>
     import("recharts").then(
-      (mod) => mod.BarChart as unknown as React.ComponentType<any>
+      (mod) => mod.BarChart as unknown as RechartsComponentType
     ),
   { ssr: false }
 );
 const Bar = dynamic(
   () =>
     import("recharts").then(
-      (mod) => mod.Bar as unknown as React.ComponentType<any>
+      (mod) => mod.Bar as unknown as RechartsComponentType
     ),
   { ssr: false }
 );
 const PieChart = dynamic(
   () =>
     import("recharts").then(
-      (mod) => mod.PieChart as unknown as React.ComponentType<any>
+      (mod) => mod.PieChart as unknown as RechartsComponentType
     ),
   { ssr: false }
 );
 const Pie = dynamic(
   () =>
     import("recharts").then(
-      (mod) => mod.Pie as unknown as React.ComponentType<any>
+      (mod) => mod.Pie as unknown as RechartsComponentType
     ),
   { ssr: false }
 );
 const Cell = dynamic(
   () =>
     import("recharts").then(
-      (mod) => mod.Cell as unknown as React.ComponentType<any>
+      (mod) => mod.Cell as unknown as RechartsComponentType
     ),
   { ssr: false }
 );
 const XAxis = dynamic(
   () =>
     import("recharts").then(
-      (mod) => mod.XAxis as unknown as React.ComponentType<any>
+      (mod) => mod.XAxis as unknown as RechartsComponentType
     ),
   { ssr: false }
 );
 const YAxis = dynamic(
   () =>
     import("recharts").then(
-      (mod) => mod.YAxis as unknown as React.ComponentType<any>
+      (mod) => mod.YAxis as unknown as RechartsComponentType
     ),
   { ssr: false }
 );
 const CartesianGrid = dynamic(
   () =>
     import("recharts").then(
-      (mod) => mod.CartesianGrid as unknown as React.ComponentType<any>
+      (mod) => mod.CartesianGrid as unknown as RechartsComponentType
     ),
   { ssr: false }
 );
 const Tooltip = dynamic(
   () =>
     import("recharts").then(
-      (mod) => mod.Tooltip as unknown as React.ComponentType<any>
-    ),
-  { ssr: false }
-);
-const Legend = dynamic(
-  () =>
-    import("recharts").then(
-      (mod) => mod.Legend as unknown as React.ComponentType<any>
+      (mod) => mod.Tooltip as unknown as RechartsComponentType
     ),
   { ssr: false }
 );

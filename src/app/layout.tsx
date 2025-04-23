@@ -10,7 +10,7 @@ const cairo = Cairo({
 });
 
 export const metadata: Metadata = {
-  title: "رؤية ٣٤ - تطبيق كرة القدم المعزز",
+  title: "WIDD ننشر الوِدّ بشغف اللعبة",
   description: "تطبيق الواقع المعزز لكرة القدم",
 };
 

@@ -15,7 +15,7 @@ const Logo = ({
     <div className={additionalClasses}>
       <Image
         src="/images/widd-logo.webp"
-        alt="Widd Logo"
+        alt="WIDD ننشر الوِدّ بشغف اللعبة"
         width={width}
         height={height}
         className="object-contain"

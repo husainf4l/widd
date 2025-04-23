@@ -1,13 +1,21 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useRef } from "react";
+import Link from "next/link";
+import { useEffect, useRef, useState } from "react";
 
 const Hero = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
+    // Check if user is logged in
+    if (typeof window !== "undefined") {
+      const user = localStorage.getItem("user");
+      setIsLoggedIn(!!user);
+    }
+
     // Video autoplay setup
     if (videoRef.current) {
       videoRef.current.play().catch((error) => {
@@ -166,7 +174,7 @@ const Hero = () => {
   return (
     <section className="relative min-h-screen h-screen flex flex-col justify-center overflow-hidden">
       {/* Background image */}
-      <div className="absolute inset-0 z-0 bg-background dark:bg-gray-900">
+      <div className="absolute inset-0 z-0 bg-gray-900">
         <Image
           src="/images/hero-bg.webp"
           alt="Hero Background"
@@ -174,7 +182,7 @@ const Hero = () => {
           className="object-cover"
           priority
         />
-        <div className="absolute inset-0 bg-black/50 dark:bg-black/70"></div>
+        <div className="absolute inset-0 bg-black/70"></div>
       </div>
 
       {/* Neural Network Animation */}
@@ -184,40 +192,43 @@ const Hero = () => {
         style={{ opacity: 0.85 }}
       />
 
-      <div className="container mx-auto px-4 relative z-10 text-white py-10 my-auto">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-16 md:gap-10 w-full">
+      <div className="container mx-auto px-4 sm:px-6 relative z-10 text-white py-10 my-auto">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-10 md:gap-10 w-full">
           {/* Left Side Content */}
-          <div className="max-w-2xl flex flex-col items-center md:items-start w-full md:w-auto">
-            <h2 className="text-2xl md:text-4xl font-medium mt-6 leading-relaxed text-center md:text-right">
+          <div className="max-w-2xl flex flex-col items-center md:items-start w-full md:w-auto px-2 sm:px-4">
+            <h2 className="text-2xl md:text-4xl font-medium mt-64  md:mt-10 leading-relaxed text-center md:text-right px-3 sm:px-4 md:px-0">
               ننشر الوِدّ بشغف اللعبة.
             </h2>
 
-            <div className="w-20 h-1 bg-blue-500 my-6 mx-auto md:mr-0 md:ml-auto"></div>
-            <p className="text-lg md:text-xl text-white text-center md:text-right">
+            <div className="w-20 h-1 bg-blue-500 my-4 md:my-6 mx-auto md:mr-0 md:ml-auto"></div>
+            <p className="text-lg md:text-xl text-white text-center md:text-right px-2 sm:px-4 md:px-0">
               وُدّ منظومة سعودية ذكية، تمزج بين الواقع المعزز، الواقع الافتراضي،
               والذكاء الاصطناعي — مبنية على القيم، ومسؤولة تجاه الإنسان
               والمجتمع.
             </p>
 
-            <button className="mt-8 bg-transparent border-2 border-blue-400 hover:bg-blue-600 hover:border-blue-600 text-white px-8 py-3 rounded-md font-medium transition-all duration-300 flex items-center gap-2 group focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-gray-900 mx-auto md:mr-0 md:ml-auto">
+            <Link
+              href={isLoggedIn ? "/dashboard" : "/login"}
+              className="mt-6 md:mt-8 bg-transparent border-2 border-blue-400 hover:bg-blue-600 hover:border-blue-600 text-white px-8 py-3 rounded-md font-medium transition-all duration-300 flex items-center gap-2 group focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-gray-900 mx-auto md:mr-0 md:ml-auto"
+            >
               <span className="group-hover:translate-x-1 transition-transform duration-300">
                 شاهد التجربة
               </span>
-            </button>
+            </Link>
           </div>
 
           {/* Right Side Video */}
-          <div className="w-full md:w-1/2 relative rounded-2xl overflow-hidden border-2 border-blue-400/30 shadow-lg shadow-blue-500/20 mt-8 md:mt-0 mb-6">
+          <div className="w-full md:w-1/2 relative rounded-2xl overflow-hidden border-2  border-blue-400/30 shadow-lg shadow-blue-500/20 mt-6 mb-32 md:mt-0  md:mb-6">
             <video
               ref={videoRef}
-              className="w-full h-[350px] md:h-[450px] object-cover"
+              className="w-full h-[320px] sm:h-[350px] md:h-[450px] object-cover"
               autoPlay
               muted
               loop
               playsInline
               poster="/images/hero-bg.webp"
             >
-              <source src="/videos/hero1.mp4" type="video/mp4" />
+              <source src="/videos/arvr.mp4" type="video/mp4" />
               Your browser does not support the video tag.
             </video>
             <div className="absolute inset-0 bg-gradient-to-tr from-black/40 to-transparent pointer-events-none"></div>

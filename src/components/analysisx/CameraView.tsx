@@ -47,7 +47,7 @@ const CameraView: React.FC<CameraViewProps> = ({ onCapture }) => {
       }
       streamRef.current = stream;
       setCameraPermissionsGranted(true);
-    } catch (error) {
+    } catch {
       setCameraPermissionsGranted(false);
       setErrorMessage(
         "لم نتمكن من الوصول إلى الكاميرا. يرجى السماح بالوصول أو التحقق من اتصال الكاميرا."
@@ -64,7 +64,6 @@ const CameraView: React.FC<CameraViewProps> = ({ onCapture }) => {
         streamRef.current.getTracks().forEach((track) => track.stop());
       }
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedCameraId]);
 
   const handleCameraChange = (e: React.ChangeEvent<HTMLSelectElement>) => {

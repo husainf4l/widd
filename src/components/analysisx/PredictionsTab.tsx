@@ -1,5 +1,25 @@
 import React from "react";
-import { AIPredictions } from "@/services/analysis/demoData";
+
+// Define the AIPredictions interface locally
+interface AIPredictions {
+  winProbability: {
+    home: number;
+    away: number;
+    draw: number;
+  };
+  expectedGoals: {
+    home: number;
+    away: number;
+  };
+  nextGoalScorer: Array<{
+    player: string;
+    probability: number;
+  }>;
+  possessionChange: {
+    prediction: string;
+    confidence: number;
+  };
+}
 
 interface PredictionsTabProps {
   predictions: AIPredictions;

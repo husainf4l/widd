@@ -1,16 +1,24 @@
 import React from "react";
-import { MatchDetection } from "@/services/analysis/demoData";
+import { MatchDetails } from "@/services/analysis/demoData";
 
 interface MatchHeaderProps {
-  matchInfo: MatchDetection;
+  matchInfo: MatchDetails & {
+    // Add missing properties with optional types
+    matchType?: string;
+    venue?: string;
+  };
 }
 
 const MatchHeader: React.FC<MatchHeaderProps> = ({ matchInfo }) => {
   return (
     <div className="flex justify-between items-center mb-4">
       <div>
-        <h2 className="text-2xl font-bold text-white">{matchInfo.matchType}</h2>
-        <p className="text-gray-300 text-sm">{matchInfo.venue}</p>
+        <h2 className="text-2xl font-bold text-white">
+          {matchInfo.matchType || "Saudi Pro League"}
+        </h2>
+        <p className="text-gray-300 text-sm">
+          {matchInfo.venue || "King Fahd Stadium"}
+        </p>
       </div>
       <div className="flex items-center gap-3 bg-gray-900/80 rounded-xl p-2 backdrop-blur-sm">
         <div className="text-right">

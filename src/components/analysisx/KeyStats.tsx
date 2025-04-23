@@ -1,8 +1,14 @@
 import React from "react";
-import { MatchDetection, FieldAnalysis } from "@/services/analysis/demoData";
+import { MatchDetails } from "@/services/analysis/demoData";
+
+// Define the FieldAnalysis interface locally since it's not exported from demoData
+interface FieldAnalysis {
+  possessionPercentage: { home: string; away: string };
+  formation: { home: string; away: string };
+}
 
 interface KeyStatsProps {
-  matchInfo: MatchDetection;
+  matchInfo: MatchDetails; // Changed from MatchDetection to MatchDetails
   fieldAnalysis: FieldAnalysis;
   expectedGoals: { home: number; away: number };
 }

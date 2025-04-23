@@ -7,51 +7,40 @@ import Link from "next/link";
 const FeaturesSection: React.FC = () => {
   const products = [
     {
-      id: "widdvar",
-      name: "WIDDvar",
-      description: "تقنية تحكيم متطورة بالذكاء الاصطناعي",
-      imageSrc: "/images/section/a1.png",
-      link: "/products/widdvar",
+      id: "widd360",
+      name: "Widd360",
+      description:
+        "كاميرا بزاوية 360° مدمجة في زي اللاعبين، تنقل رؤية واقعية مباشرة من قلب الحدث.",
+      imageSrc: "/images/section/widd360.webp",
+      link: "/products/widd360",
     },
+
     {
       id: "widdpost",
       name: "WIDDpost",
-      description: "تحليل متكامل لما بعد المباراة",
-      imageSrc: "/images/section/a2.png",
+      description:
+        "ميزة ذكية تُحوّل اللحظات المميزة إلى منشورات تلقائية قابلة للمشاركة على المنصات الاجتماعية.",
+      imageSrc: "/images/section/widdpost.webp",
       link: "/products/widdpost",
     },
+
     {
       id: "widdone",
       name: "WIDDone",
-      description: "حل متكامل للأندية بتكلفة معقولة",
-      imageSrc: "/images/section/a3.png",
+      description: "متجر تطبيقات مخصص لنظارات WIDD VAR .",
+      imageSrc: "/images/section/widdone.webp",
       link: "/products/widdone",
     },
+
     {
-      id: "widd360",
-      name: "Widd360",
-      description: "كاميرا بزاوية 360° مدمجة في زي اللاعبين",
-      imageSrc: "/images/widd360.png",
-      link: "/products/widd360",
-    },
-    {
-      id: "varhome",
-      name: "VARhome",
+      id: "widdvar",
+      name: "WIDDvar",
       description:
-        "تعرض المباراة مباشرة في وضع الواقع المعزز، كتجربة جماعية تعزز التفاعل دون أي عزلة. وعند اللحظات الحاسمة، تتحوّل النظارة لتجربة واقع افتراضي قصيرة، ثم تعود بسلاسة",
-      imageSrc: "/images/section/a1.png",
-      link: "/products/widd-var-one",
-    },
-    {
-      id: "varstudiom",
-      name: "VARstudiom",
-      description:
-        "تعرض الإحصائيات على الزجاج الشفاف وأنت وسط الجمهور. عند اللحظات الحاسمة، تتحوّل لتجربة VR قصيرة، ثم تعود للواقع بسلاسة",
-      imageSrc: "/images/section/a2.png",
-      link: "/products/widd-var",
+        " منظومة هجينة تجمع بين الواقع المعزز , الواقع الافتراضي بطريقة تحترم الحضور وتعزز اللحظة.",
+      imageSrc: "/images/section/var.webp",
+      link: "/products/widdvar",
     },
   ];
-
   return (
     <section className="w-full bg-background dark:bg-gray-900 text-foreground dark:text-white overflow-hidden p-4">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">

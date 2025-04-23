@@ -1,6 +1,5 @@
 "use client";
 import { motion } from "framer-motion";
-import Image from "next/image";
 import { useState } from "react";
 
 const Technology = () => {
@@ -431,10 +430,10 @@ const Technology = () => {
 
                 <div className="bg-white p-6 rounded-xl border border-gray-100 shadow-md">
                   <blockquote className="text-lg italic text-black/80 border-l-4 border-primary pl-4">
-                    "WIDD.AI represents a new standard in ethical sports
+                    &ldquo;WIDD.AI represents a new standard in ethical sports
                     technology, showing how innovation can be advanced while
                     remaining true to cultural values and putting humans at the
-                    center."
+                    center.&rdquo;
                   </blockquote>
                   <div className="mt-4 flex items-center">
                     <div className="h-10 w-10 rounded-full bg-primary/20 flex items-center justify-center text-primary">

@@ -1,22 +1,17 @@
 import React from "react";
-import MatchHeader from "./MatchHeader";
-import KeyStats from "./KeyStats";
-import TabsNavigation from "./TabsNavigation";
-import PlayersTab from "./PlayersTab";
-import StatsTab from "./StatsTab";
-import PredictionsTab from "./PredictionsTab";
+// Removed unused imports
 import { PlayerAnalysisClass } from "@/services/analysis/demoData";
 
 interface AnalysisOverlayProps {
   analysisResults: PlayerAnalysisClass | null;
+  // Keeping these in the interface but not using them in the component
   activeTab: "players" | "stats" | "predictions";
   setActiveTab: (tab: "players" | "stats" | "predictions") => void;
 }
 
 const AnalysisOverlay: React.FC<AnalysisOverlayProps> = ({
   analysisResults,
-  activeTab,
-  setActiveTab,
+  // Removed unused props
 }) => {
   if (!analysisResults) return null;
 

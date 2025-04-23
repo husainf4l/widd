@@ -227,9 +227,9 @@ const DemoAnalytics = () => {
                       <div>
                         <h3 className="text-xl font-bold mb-4">AI Insights</h3>
                         <p className="text-white/90 mb-6">
-                          Performance data suggests Fahad Al-Muwallad's shot
+                          Performance data suggests Fahad Al-Muwallad&apos;s shot
                           precision has significantly improved, making him a key
-                          offensive asset for today's match.
+                          offensive asset for today&apos;s match.
                         </p>
                       </div>
                       <div className="space-y-3">

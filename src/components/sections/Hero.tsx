@@ -39,7 +39,8 @@ const Hero = () => {
             >
               Fusing cutting-edge AI with the soul of the game. Born in Saudi
               Arabia, built for athletes, coaches, and fans who believe
-              performance is about more than numbers—it's about heart.
+              performance is about more than numbers&mdash;it&apos;s about
+              heart.
             </motion.p>
 
             <motion.div
