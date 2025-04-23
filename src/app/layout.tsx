@@ -12,6 +12,31 @@ const cairo = Cairo({
 export const metadata: Metadata = {
   title: "WIDD ننشر الوِدّ بشغف اللعبة",
   description: "تطبيق الواقع المعزز لكرة القدم",
+  metadataBase: new URL("https://widd.ai"), // Updated to correct domain
+  openGraph: {
+    title: "WIDD ننشر الوِدّ بشغف اللعبة",
+    description:
+      "تطبيق الواقع المعزز لكرة القدم | Augmented Reality for Football",
+    url: "https://widd.ai", // Updated to correct domain
+    siteName: "WIDD",
+    images: [
+      {
+        url: "/images/section/var.webp", // Updated to use var.webp from section directory
+        width: 1200,
+        height: 630,
+        alt: "WIDD VAR",
+      },
+    ],
+    locale: "ar_SA",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "WIDD ننشر الوِدّ بشغف اللعبة",
+    description:
+      "تطبيق الواقع المعزز لكرة القدم | Augmented Reality for Football",
+    images: ["/images/section/var.webp"], // Updated to match OG image
+  },
 };
 
 export default function RootLayout({
