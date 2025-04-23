@@ -12,7 +12,7 @@ import {
 import { LiveKitRoom, VideoConference } from "@livekit/components-react";
 import "@livekit/components-styles";
 
-const LIVEKIT_URL = "wss://royaksa-virngt4o.livekit.cloud";
+const LIVEKIT_URL = "wss://widd-virngt4o.livekit.cloud";
 
 export default function LivekitPage() {
   const router = useRouter();
@@ -195,7 +195,7 @@ export default function LivekitPage() {
                   <div className="flex gap-2">
                     <button
                       onClick={() =>
-                        tokenData.room?.livekitRoomId && 
+                        tokenData.room?.livekitRoomId &&
                         handleGoToPublisherRoom(tokenData.room.livekitRoomId)
                       }
                       className="bg-cyan-700 hover:bg-cyan-600 text-white px-4 py-1 rounded-lg text-sm transition-all"
@@ -204,7 +204,7 @@ export default function LivekitPage() {
                     </button>
                     <button
                       onClick={() =>
-                        tokenData.room?.livekitRoomId && 
+                        tokenData.room?.livekitRoomId &&
                         handleGoToSubscriberRoom(tokenData.room.livekitRoomId)
                       }
                       className="bg-indigo-700 hover:bg-indigo-600 text-white px-4 py-1 rounded-lg text-sm transition-all"

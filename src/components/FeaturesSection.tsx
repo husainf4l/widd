@@ -6,12 +6,12 @@ import React, { useState, useEffect } from "react";
 const FeaturesSection: React.FC = () => {
   const images = [
     {
-      src: "/images/roya360.png",
-      alt: "Roya360 Camera – Saudi Innovation",
+      src: "/images/widd360.png",
+      alt: "Widd360 Camera – Saudi Innovation",
     },
     {
-      src: "/images/roya3602.png",
-      alt: "Roya360 Camera – Saudi Innovation",
+      src: "/images/widd3602.png",
+      alt: "Widd360 Camera – Saudi Innovation",
     },
   ];
 

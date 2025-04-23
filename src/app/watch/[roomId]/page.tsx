@@ -13,7 +13,7 @@ import "@livekit/components-styles";
 import { generateLivekitToken } from "@/services/live/generate_token";
 import { RoomEvent, Track } from "livekit-client";
 
-const LIVEKIT_URL = "wss://royaksa-virngt4o.livekit.cloud";
+const LIVEKIT_URL = "wss://widd-virngt4o.livekit.cloud";
 
 function ViewerExperience() {
   const [captionText, setCaptionText] = useState<string | null>(null);

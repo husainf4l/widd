@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Login | Roya",
+  title: "Login | Widd",
   description: "Login Page",
 };
 

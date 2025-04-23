@@ -37,8 +37,8 @@ const WelcomeCard: React.FC = () => {
         </div>
         <div className="hidden md:block relative w-32 h-32">
           <Image
-            src="/images/roya360.png"
-            alt="Roya Logo"
+            src="/images/widd360.png"
+            alt="Widd Logo"
             width={128}
             height={128}
             className="object-contain"

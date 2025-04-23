@@ -122,7 +122,7 @@ export default function TermsPage() {
                   معنا من خلال:
                 </p>
                 <ul className="list-disc list-inside pr-6 space-y-2">
-                  <li>البريد الإلكتروني: info@royah34.com</li>
+                  <li>البريد الإلكتروني: info@widd.com</li>
                   <li>رقم الهاتف: +966 12 345 6789</li>
                   <li>صفحة التواصل على موقعنا</li>
                 </ul>

@@ -3,7 +3,7 @@
 import { Room } from "livekit-client";
 import { generatePublisherToken } from "./generate_token";
 
-const LIVEKIT_WS_URL = "wss://royaksa-virngt4o.livekit.cloud";
+const LIVEKIT_WS_URL = "wss://widd-virngt4o.livekit.cloud";
 
 export async function sendCaptionAsBot(
   roomName: string,

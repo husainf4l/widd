@@ -14,7 +14,7 @@ import {
   generatePublisherToken,
 } from "@/services/live/generate_token";
 
-const LIVEKIT_URL = "wss://royaksa-virngt4o.livekit.cloud";
+const LIVEKIT_URL = "wss://widd-virngt4o.livekit.cloud";
 
 export default function RoomPage() {
   const router = useRouter();

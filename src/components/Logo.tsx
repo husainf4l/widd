@@ -14,8 +14,8 @@ const Logo = ({
   return (
     <div className={additionalClasses}>
       <Image
-        src="/images/roya-logo.webp"
-        alt="Roya Logo"
+        src="/images/widd-logo.webp"
+        alt="Widd Logo"
         width={width}
         height={height}
         className="object-contain"
