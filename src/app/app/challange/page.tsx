@@ -1,13 +1,7 @@
 "use client";
 
 import React from "react";
-import {
-  Trophy,
-  Lightbulb,
-  MousePointerClick,
-  Brain,
-  ArrowDown,
-} from "lucide-react";
+import { Lightbulb, MousePointerClick, Brain, ArrowDown } from "lucide-react";
 
 export default function ChallengePage() {
   return (

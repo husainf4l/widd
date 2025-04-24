@@ -4,16 +4,7 @@ import React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
-import {
-  Camera,
-  Tv,
-  Users,
-  Rss,
-  User,
-  Settings,
-  ChartNoAxesColumn,
-  AlertTriangle,
-} from "lucide-react";
+import { Camera, Tv, Rss, User, Settings, AlertTriangle } from "lucide-react";
 
 export default function UserNavBar() {
   const pathname = usePathname();
