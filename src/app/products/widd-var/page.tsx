@@ -8,12 +8,12 @@ export default function WiddVarPage() {
       <div className="container mx-auto px-4 py-16">
         <div className="max-w-4xl mx-auto">
           <h1 className="text-4xl md:text-5xl font-bold mb-6">
-            رؤيا VAR – تقنية تحكيم متطورة
+            WIDD VAR – تقنية تحكيم متطورة
           </h1>
 
           <div className="relative w-full aspect-video mb-8 rounded-xl overflow-hidden">
             <Image
-              src="/images/section/a1.png"
+              src="/images/section/var.webp"
               alt="Widd VAR Technology"
               fill
               className="object-cover"
