@@ -5,7 +5,7 @@ import React from "react";
 
 const ImmersiveSportsSection: React.FC = () => {
   return (
-    <section className="relative w-full flex items-center justify-center min-h-[70vh] md:min-h-[80vh] bg-gray-200 dark:bg-gray-800">
+    <section className="relative w-full flex items-center justify-center min-h-[70vh] md:min-h-[80vh] bg-gray-200">
       <div className="absolute inset-0">
         <Image
           src="/images/section/a2.png"
@@ -14,20 +14,17 @@ const ImmersiveSportsSection: React.FC = () => {
           className="object-cover"
           priority
         />
-        <div className="absolute inset-0 bg-black/60 dark:bg-black/70" />
+        <div className="absolute inset-0 bg-black/60" />
       </div>
       <div className="max-w-6xl mx-auto px-6 py-20 flex flex-col items-center justify-between relative z-10">
         <div className="w-full mb-10">
           <h2 className="text-4xl md:text-5xl font-extrabold mb-6 text-white drop-shadow-lg text-center">
-            عِش اللحظة وكأنك على خط التماس
+            مقعدك بعيد؟ قربناه لك.
           </h2>
           <div className="w-20 h-1 bg-blue-500 mb-6 mx-auto" />
-          <p className="text-xl  text-white  mb-4  drop-shadow-lg text-center max-w-3xl mx-auto">
+          <p className="text-xl  text-white  mb-8 drop-shadow-lg text-center max-w-3xl mx-auto">
             مع كاميراتنا الـ360° المنتشرة في كل زاوية من الاستاد، ما في لقطة
             تفوتك. عِش اللحظة وكأنك على خط التماس… مهما كان مقعدك.
-          </p>
-          <p className="text-sm text-white mb-8  text-center max-w-3xl mx-auto">
-            اقصى مدة مسموحة ١ دقيقة
           </p>
         </div>
 

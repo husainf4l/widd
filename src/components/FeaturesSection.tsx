@@ -38,7 +38,7 @@ const FeaturesSection: React.FC = () => {
       description:
         " منظومة هجينة تجمع بين الواقع المعزز , الواقع الافتراضي بطريقة تحترم الحضور وتعزز اللحظة.",
       imageSrc: "/images/section/var.webp",
-      link: "/products/widdvar",
+      link: "/products/widd-var",
     },
   ];
   return (

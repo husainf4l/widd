@@ -1,9 +1,9 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import FeaturesSection from "@/components/FeaturesSection";
-import DownloadSection from "@/components/DownloadSection";
 import Footer from "@/components/Footer";
-import ImmersiveSportsSection from "@/components/ImmersiveSportsSection";
+import ImmersiveSportsSection from "@/components/home/ImmersiveSportsSection";
+import DownloadSection from "@/components/home/DownloadSection";
 
 export default function Home() {
   return (

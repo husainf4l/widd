@@ -130,6 +130,11 @@ const Navbar = () => {
               </li>
             )}
             <li>
+              <Link href="/products" className="hover:underline">
+                منتجاتنا
+              </Link>
+            </li>
+            <li>
               <Link href="/about" className="hover:underline">
                 من نحن
               </Link>
@@ -196,6 +201,15 @@ const Navbar = () => {
               </Link>
             </li>
           )}
+          <li>
+            <Link
+              href="/products"
+              className="hover:text-gray-300"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              منتجاتنا
+            </Link>
+          </li>
           <li>
             <Link
               href="/about"

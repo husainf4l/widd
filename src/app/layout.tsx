@@ -16,12 +16,12 @@ export const metadata: Metadata = {
   openGraph: {
     title: "WIDD ننشر الوِدّ بشغف اللعبة",
     description:
-      "تطبيق الواقع المعزز لكرة القدم | Augmented Reality for Football",
+      "وُدّ منظومة سعودية ذكية، تمزج بين الواقع المعزز، الواقع الافتراضي، والذكاء الاصطناعي — مبنية على القيم، ومسؤولة تجاه الإنسان والمجتمع.",
     url: "https://widd.ai", // Updated to correct domain
     siteName: "WIDD",
     images: [
       {
-        url: "/images/section/var.webp", // Updated to use var.webp from section directory
+        url: "https://widd.ai/images/section/var.webp", // Updated to absolute URL
         width: 1200,
         height: 630,
         alt: "WIDD VAR",
@@ -34,8 +34,8 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "WIDD ننشر الوِدّ بشغف اللعبة",
     description:
-      "تطبيق الواقع المعزز لكرة القدم | Augmented Reality for Football",
-    images: ["/images/section/var.webp"], // Updated to match OG image
+      "وُدّ منظومة سعودية ذكية، تمزج بين الواقع المعزز، الواقع الافتراضي، والذكاء الاصطناعي — مبنية على القيم، ومسؤولة تجاه الإنسان والمجتمع.",
+    images: ["https://widd.ai/images/section/var.webp"], // Updated to absolute URL
   },
 };
 
