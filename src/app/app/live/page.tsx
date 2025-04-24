@@ -3,6 +3,14 @@
 import React, { useEffect, useRef, useState } from "react";
 import { cameraService, type CameraServiceState } from "@/services/camera";
 import { CameraPermission } from "@/components/camera/CameraPermission";
+import { CameraOverlay } from "@/components/camera/CameraOverlay";
+import {
+  RefreshIcon,
+  PlayIcon,
+  FullscreenIcon,
+  MinimizeIcon,
+  CameraIcon,
+} from "@/components/icons/CameraIcons";
 
 export default function LivePage() {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -183,29 +191,28 @@ export default function LivePage() {
       {/* Fallback background when video is not showing */}
       {(state.permissionState !== "granted" ||
         !videoRef.current?.srcObject) && (
-        <div className="absolute inset-0 w-full h-full bg-gradient-to-b from-blue-900 to-indigo-900 z-0">
+        <div className="absolute inset-0 w-full h-full bg-gradient-to-b from-gray-900 to-gray-800 z-0">
           <div className="absolute inset-0 opacity-20 bg-grid-white"></div>
         </div>
       )}
 
       {/* Content overlay */}
       <div className="relative z-10 w-full h-full flex flex-col items-center justify-center p-4">
-        <h1 className="text-3xl font-semibold text-white bg-black/50 px-6 py-3 rounded-lg shadow-lg mb-6">
-          x{" "}
-        </h1>
+        {/* Camera Overlay - only shows when camera is working successfully */}
+        <CameraOverlay state={state} videoRef={videoRef} />
 
         {/* Status indicator when camera is granted but might not be playing */}
         {state.permissionState === "granted" &&
           videoRef.current &&
           videoRef.current.srcObject &&
           !state.isVideoPlaying && (
-            <div className="bg-yellow-400/90 text-yellow-900 p-3 rounded-lg max-w-sm text-center mb-4">
-              <p>Camera connected but not streaming yet.</p>
+            <div className="bg-amber-500/90 text-amber-950 p-3 rounded-lg max-w-sm text-center mb-4">
+              <p>تم توصيل الكاميرا ولكن البث لم يبدأ بعد.</p>
               <button
                 onClick={forcePlay}
-                className="mt-2 bg-yellow-600 hover:bg-yellow-700 text-white px-4 py-1 rounded-md text-sm"
+                className="mt-2 bg-amber-600 hover:bg-amber-700 text-white px-4 py-1 rounded-md text-sm"
               >
-                Click to Start Stream
+                انقر لبدء البث
               </button>
             </div>
           )}
@@ -213,44 +220,49 @@ export default function LivePage() {
         {/* Camera Controls when granted */}
         {state.permissionState === "granted" && (
           <div className="absolute bottom-6 left-0 right-0 flex justify-center">
-            <div className="bg-black/70 text-white px-4 py-2 rounded-full">
+            <div className="bg-gray-900/90 text-white px-4 py-2 rounded-full flex items-center">
               {state.cameraDevices.length > 1 && (
-                <select
-                  value={state.selectedCamera || ""}
-                  onChange={(e) =>
-                    updateState({ selectedCamera: e.target.value })
-                  }
-                  className="bg-transparent border border-white/30 rounded px-2 py-1 mr-2"
-                >
-                  {state.cameraDevices.map((device) => (
-                    <option key={device.deviceId} value={device.deviceId}>
-                      {device.label ||
-                        `Camera ${device.deviceId.slice(0, 5)}...`}
-                    </option>
-                  ))}
-                </select>
+                <div className="flex items-center mr-2">
+                  <CameraIcon />
+                  <select
+                    value={state.selectedCamera || ""}
+                    onChange={(e) =>
+                      updateState({ selectedCamera: e.target.value })
+                    }
+                    className="bg-gray-800 border border-gray-700 rounded px-2 py-1 focus:ring-blue-500 focus:border-blue-500"
+                  >
+                    {state.cameraDevices.map((device) => (
+                      <option key={device.deviceId} value={device.deviceId}>
+                        {device.label ||
+                          `كاميرا ${device.deviceId.slice(0, 5)}...`}
+                      </option>
+                    ))}
+                  </select>
+                </div>
               )}
               <button
                 onClick={refreshCameras}
-                className="text-white ml-2 px-3 py-1 bg-blue-600 rounded-md hover:bg-blue-700"
+                className="text-white mx-2 p-2 bg-blue-600 rounded-full hover:bg-blue-700 flex items-center justify-center"
+                title="تحديث الكاميرات"
               >
-                Refresh Cameras
+                <RefreshIcon />
               </button>
               {videoRef.current &&
                 videoRef.current.srcObject &&
                 !state.isVideoPlaying && (
                   <button
                     onClick={forcePlay}
-                    className="text-white ml-2 px-3 py-1 bg-green-600 rounded-md hover:bg-green-700"
+                    className="text-white mx-2 p-2 bg-amber-600 rounded-full hover:bg-amber-700 flex items-center justify-center"
+                    title="بدء البث"
                   >
-                    Start Stream
+                    <PlayIcon />
                   </button>
                 )}
               <button
                 onClick={toggleFullscreen}
-                className="text-white ml-2 px-3 py-1 bg-gray-600 rounded-md hover:bg-gray-700"
+                className="text-white mx-2 p-2 bg-gray-700 rounded-full hover:bg-gray-600 flex items-center justify-center"
               >
-                {state.isFullscreen ? "Exit Fullscreen" : "Fullscreen"}
+                {state.isFullscreen ? <MinimizeIcon /> : <FullscreenIcon />}
               </button>
             </div>
           </div>
