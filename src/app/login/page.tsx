@@ -19,7 +19,7 @@ export default function LoginPage() {
   // Redirect if already authenticated
   React.useEffect(() => {
     if (isAuthenticated) {
-      router.push("/dashboard");
+      router.push("/app");
     }
   }, [isAuthenticated, router]);
 
@@ -30,7 +30,7 @@ export default function LoginPage() {
 
     try {
       await login(email, password);
-      router.push("/dashboard"); // Redirect to dashboard after successful login
+      router.push("/app"); // Redirect to app after successful login
     } catch (err: unknown) {
       console.error("Login error:", err);
       setError(

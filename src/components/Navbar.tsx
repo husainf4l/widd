@@ -124,7 +124,7 @@ const Navbar = () => {
             </li>
             {username && (
               <li>
-                <Link href="/dashboard" className="hover:underline">
+                <Link href="/app" className="hover:underline">
                   لوحة التحكم
                 </Link>
               </li>
@@ -193,7 +193,7 @@ const Navbar = () => {
           {username && (
             <li>
               <Link
-                href="/dashboard"
+                href="/app"
                 className="hover:text-gray-300"
                 onClick={() => setIsMenuOpen(false)}
               >

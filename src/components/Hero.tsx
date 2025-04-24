@@ -208,7 +208,7 @@ const Hero = () => {
             </p>
 
             <Link
-              href={isLoggedIn ? "/dashboard" : "/login"}
+              href={isLoggedIn ? "/app" : "/login"}
               className="mt-6 md:mt-8 bg-transparent border-2 border-blue-400 hover:bg-blue-600 hover:border-blue-600 text-white px-8 py-3 rounded-md font-medium transition-all duration-300 flex items-center gap-2 group focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-gray-900 mx-auto md:mr-0 md:ml-auto"
             >
               <span className="group-hover:translate-x-1 transition-transform duration-300">

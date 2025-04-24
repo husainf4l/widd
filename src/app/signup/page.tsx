@@ -22,7 +22,7 @@ export default function SignupPage() {
   // Redirect if already authenticated
   React.useEffect(() => {
     if (isAuthenticated) {
-      router.push("/dashboard");
+      router.push("/app");
     }
   }, [isAuthenticated, router]);
 
@@ -46,7 +46,7 @@ export default function SignupPage() {
 
     try {
       await register(firstName, lastName, email, password);
-      router.push("/dashboard"); // Redirect to dashboard after successful registration
+      router.push("/app"); // Redirect to app after successful registration
     } catch (err: unknown) {
       console.error("Signup error:", err);
       setError(
