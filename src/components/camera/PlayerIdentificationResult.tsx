@@ -81,7 +81,7 @@ export const PlayerIdentificationResult: React.FC<
                         </h3>
                         <p className="">
                           {playerInfo.player.position} |{" "}
-                          {playerInfo.player.team}
+                          {playerInfo.player.number}
                         </p>
                         <p className=" text-sm">
                           {playerInfo.player.nationality}
@@ -191,9 +191,7 @@ export const PlayerIdentificationResult: React.FC<
                       </div>
                     </div>
                     <div className="text-center">
-                      <p className="text-xl font-bold mb-1">
-                        {playerInfo.team}
-                      </p>
+                      <p className="text-xl font-bold mb-1"></p>
                       <p className="text-gray-300">{playerInfo.message}</p>
                     </div>
                   </>

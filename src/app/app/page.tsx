@@ -29,7 +29,8 @@ export default function AppPage() {
             <div className="p-6 text-white">
               <h1 className="text-3xl font-bold mb-2">WIDD VAR</h1>
               <p className="text-sm opacity-90">
-                نظام تحكيم متطور يعتمد على الذكاء الاصطناعي
+                منظومة هجينة تجمع بين الواقع المعزز , الواقع الافتراضي بطريقة
+                تحترم الحضور وتعزز اللحظة.
               </p>
             </div>
           </div>

@@ -12,37 +12,35 @@ import {
   User,
   Settings,
   ChartNoAxesColumn,
+  AlertTriangle,
 } from "lucide-react";
 
 export default function UserNavBar() {
   const pathname = usePathname();
 
   const navItems = [
-    { id: "feed", name: "Feed", path: "/app/under", icon: <Rss size={20} /> },
+    { id: "feed", name: "Feed", path: "/app", icon: <Rss size={20} /> },
+    {
+      id: "settings",
+      name: "Settings",
+      path: "/app/settings",
+      icon: <Settings size={20} />,
+    },
+    { id: "live", name: "Live", path: "/app/live", icon: <Tv size={20} /> },
+
+    {
+      id: "challange",
+      name: "Challange",
+      path: "/app/challange",
+
+      //error icon
+      icon: <AlertTriangle size={20} />,
+    },
     {
       id: "camera",
       name: "Camera",
       path: "/app/camera",
       icon: <Camera size={20} />,
-    },
-    {
-      id: "analysis",
-      name: "Analysis",
-      path: "/app/analysis",
-      icon: <ChartNoAxesColumn size={20} />,
-    },
-    { id: "live", name: "Live", path: "/app/live", icon: <Tv size={20} /> },
-    {
-      id: "social",
-      name: "Social",
-      path: "/app/under",
-      icon: <Users size={20} />,
-    },
-    {
-      id: "settings",
-      name: "Settings",
-      path: "/app/under",
-      icon: <Settings size={20} />,
     },
   ];
 
