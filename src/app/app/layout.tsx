@@ -1,18 +1,12 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import { usePathname } from "next/navigation";
 import UserNavBar from "@/components/app/UserNavBar";
 import UserHeader from "@/components/app/UserHeader";
 
 export default function AppLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-
-  // Toggle menu open/closed
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
 
   // Generate page title from the pathname
   const getPageTitle = (): string => {

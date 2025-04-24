@@ -28,7 +28,6 @@ export default function CameraPage() {
   });
   const [isMounted, setIsMounted] = useState(false);
   const [showAdvancedOptions, setShowAdvancedOptions] = useState(false);
-  const [capturedPhotos, setCapturedPhotos] = useState<string[]>([]);
   const [showCaptureSuccess, setShowCaptureSuccess] = useState(false);
 
   // WiddPost specific states
@@ -224,9 +223,6 @@ export default function CameraPage() {
       // Convert the canvas to a data URL (JPEG format for smaller size)
       const imageDataUrl = canvas.toDataURL("image/jpeg", 0.9);
 
-      // Add to captured photos array for UI purposes
-      setCapturedPhotos((prev) => [...prev, imageDataUrl]);
-
       // Convert the data URL to a File object
       const blobData = await fetch(imageDataUrl).then((r) => r.blob());
       const imageFile = new File([blobData], "widdpost-capture.jpg", {
@@ -238,7 +234,11 @@ export default function CameraPage() {
 
       try {
         // Call widdpost API service
-        const response = await widdPostService.createPost(imageFile, mood, hints);
+        const response = await widdPostService.createPost(
+          imageFile,
+          mood,
+          hints
+        );
         console.log("WiddPost creation response:", response);
 
         setPostResult(response);
@@ -447,13 +447,13 @@ export default function CameraPage() {
 
       {/* WiddPost Result Modal */}
       {showPostResult && postResult && (
-        <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4">
-          <div className="bg-gray-800 rounded-2xl w-full max-w-md overflow-hidden border border-gray-700">
-            <div className="p-5 bg-blue-600 text-white flex justify-between items-center">
-              <h3 className="font-semibold">نتيجة إنشاء المنشور</h3>
+        <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4">
+          <div className="bg-gray-800 rounded-2xl w-full max-w-lg overflow-hidden border border-gray-700 shadow-xl">
+            <div className="p-5 bg-gradient-to-r from-blue-600 to-blue-700 text-white flex justify-between items-center">
+              <h3 className="font-semibold text-lg">نتيجة إنشاء المنشور</h3>
               <button
                 onClick={() => setShowPostResult(false)}
-                className="text-white"
+                className="text-white hover:bg-blue-800 rounded-full p-1.5"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -488,41 +488,138 @@ export default function CameraPage() {
               )}
 
               {postResult.status === "success" && (
-                <div className="space-y-4">
-                  {postResult.imageUrl && (
-                    <div className="rounded-lg overflow-hidden">
-                      {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img
-                        src={postResult.imageUrl}
-                        alt="Captured image"
-                        className="w-full object-cover"
-                      />
+                <div className="space-y-5">
+                  {/* Post Preview Section */}
+                  <div className="bg-gray-900 rounded-xl p-5 border border-gray-700 shadow-inner">
+                    {/* Mood indicator and timestamp */}
+                    <div className="flex justify-between items-center mb-4 text-sm text-gray-400">
+                      <div className="flex items-center">
+                        <span className="inline-block w-2 h-2 rounded-full bg-blue-500 mr-2"></span>
+                        <span>الحالة: {postResult.mood || mood}</span>
+                      </div>
+                      {postResult.generatedAt && (
+                        <div>
+                          {new Date(postResult.generatedAt).toLocaleDateString(
+                            "ar-SA",
+                            {
+                              year: "numeric",
+                              month: "short",
+                              day: "numeric",
+                              hour: "2-digit",
+                              minute: "2-digit",
+                            }
+                          )}
+                        </div>
+                      )}
                     </div>
-                  )}
 
-                  {postResult.content && (
-                    <div className="bg-gray-700 rounded-lg p-4">
-                      <h4 className="text-white font-medium mb-2">
-                        المحتوى المقترح
-                      </h4>
-                      <p className="text-gray-200">{postResult.content}</p>
+                    {/* Post Content */}
+                    {postResult.content && (
+                      <div className="mb-4 text-white">
+                        <p className="text-lg leading-relaxed">
+                          {postResult.content}
+                        </p>
+                      </div>
+                    )}
+
+                    {/* Hashtags */}
+                    {postResult.hashtags && postResult.hashtags.length > 0 && (
+                      <div className="flex flex-wrap gap-2 mt-3">
+                        {postResult.hashtags.map((tag, index) => (
+                          <span
+                            key={index}
+                            className="bg-blue-600/30 text-blue-300 px-3 py-1 rounded-full text-sm"
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Actions */}
+                  <div className="flex flex-col space-y-3">
+                    <div className="grid grid-cols-2 gap-3">
+                      <button
+                        onClick={() =>
+                          window.navigator.clipboard.writeText(
+                            postResult.content || ""
+                          )
+                        }
+                        className="bg-gray-700 hover:bg-gray-600 text-white py-2.5 rounded-lg flex items-center justify-center"
+                      >
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          className="h-5 w-5 mr-2"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"
+                          />
+                        </svg>
+                        نسخ المحتوى
+                      </button>
+
+                      <button
+                        onClick={() =>
+                          window.navigator.clipboard.writeText(
+                            (postResult.hashtags || []).join(" ")
+                          )
+                        }
+                        className="bg-gray-700 hover:bg-gray-600 text-white py-2.5 rounded-lg flex items-center justify-center"
+                      >
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          className="h-5 w-5 mr-2"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M7 20l4-16m2 16l4-16M6 9h14M4 15h14"
+                          />
+                        </svg>
+                        نسخ الهاشتاقات
+                      </button>
                     </div>
-                  )}
 
-                  <div className="flex justify-end">
                     <button
-                      onClick={() =>
-                        window.navigator.clipboard.writeText(
-                          postResult.content || ""
-                        )
-                      }
-                      className="bg-gray-700 hover:bg-gray-600 text-white px-4 py-2 rounded-lg mr-2"
+                      onClick={() => {
+                        const fullPost = `${postResult.content || ""}\n\n${(
+                          postResult.hashtags || []
+                        ).join(" ")}`;
+                        window.navigator.clipboard.writeText(fullPost);
+                      }}
+                      className="bg-blue-600 hover:bg-blue-700 text-white py-2.5 rounded-lg flex items-center justify-center"
                     >
-                      نسخ المحتوى
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="h-5 w-5 mr-2"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4"
+                        />
+                      </svg>
+                      نسخ المنشور كاملاً
                     </button>
+
                     <button
                       onClick={() => setShowPostResult(false)}
-                      className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg"
+                      className="bg-gray-600 hover:bg-gray-500 text-white py-2 rounded-lg"
                     >
                       إغلاق
                     </button>

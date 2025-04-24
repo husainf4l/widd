@@ -21,16 +21,6 @@ export interface CameraServiceState {
   isFullscreen: boolean;
 }
 
-const DEFAULT_STATE: CameraServiceState = {
-  permissionState: "not-requested",
-  errorMessage: null,
-  hasCamera: null,
-  cameraDevices: [],
-  selectedCamera: null,
-  isVideoPlaying: false,
-  isFullscreen: false,
-};
-
 class CameraService {
   private timeoutRef: NodeJS.Timeout | null = null;
 
@@ -426,6 +416,8 @@ class CameraService {
    */
   async toggleFullscreen(
     containerRef: React.RefObject<HTMLDivElement | null>,
+    // We use onStateChange elsewhere, but the fullscreen state is updated through event handler
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     onStateChange: (update: Partial<CameraServiceState>) => void
   ): Promise<void> {
     try {

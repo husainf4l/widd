@@ -1,5 +1,5 @@
 import React from "react";
-import { cameraService, type CameraServiceState } from "@/services/camera";
+import type { CameraServiceState } from "@/services/camera";
 
 interface CameraOverlayProps {
   state: CameraServiceState;

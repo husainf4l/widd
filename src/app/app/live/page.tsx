@@ -32,7 +32,6 @@ export default function LivePage() {
   });
   const [isMounted, setIsMounted] = useState(false);
   const [showAdvancedOptions, setShowAdvancedOptions] = useState(false);
-  const [capturedPhotos, setCapturedPhotos] = useState<string[]>([]);
   const [showCaptureSuccess, setShowCaptureSuccess] = useState(false);
   const [playerInfo, setPlayerInfo] =
     useState<PlayerIdentificationResponse | null>(null);
@@ -217,9 +216,6 @@ export default function LivePage() {
     // Convert the canvas to a data URL (JPEG format for smaller size)
     try {
       const imageDataUrl = canvas.toDataURL("image/jpeg", 0.9);
-
-      // Add to captured photos array for UI purposes
-      setCapturedPhotos((prev) => [...prev, imageDataUrl]);
 
       // Convert the data URL to a File object
       const blobData = await fetch(imageDataUrl).then((r) => r.blob());

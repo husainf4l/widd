@@ -46,7 +46,7 @@ export interface Player {
   imageUrl: string;
   createdAt: string;
   updatedAt: string;
-  embedding: any;
+  embedding: number[];
 }
 
 export interface PlayerPerformance {
@@ -70,7 +70,7 @@ export interface PlayerPerformance {
   heatmapUrl: string;
   positionLog: PositionLog;
   createdAt: string;
-  embedding: any;
+  embedding: number[];
 }
 
 export interface PlayerIdentificationResponse {
@@ -151,11 +151,23 @@ export const playerService = {
         status: 'error',
         message: 'No player data received from server.'
       };
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error('Error uploading file for player identification:', error);
       
+      // Type guard to handle error properly
+      const err = error as {
+        code?: string;
+        message?: string;
+        response?: {
+          status: number;
+          data?: {
+            message?: string;
+          };
+        };
+      };
+      
       // Handle network errors
-      if (error.code === 'ECONNABORTED') {
+      if (err.code === 'ECONNABORTED') {
         return {
           status: 'error',
           message: 'Request timed out. Please check your connection and try again.'
@@ -163,8 +175,8 @@ export const playerService = {
       }
       
       // Handle API errors with response
-      if (error.response) {
-        const statusCode = error.response.status;
+      if (err.response) {
+        const statusCode = err.response.status;
         let errorMessage = 'Failed to identify player. Please try again.';
         
         // Customize message based on status code
@@ -179,8 +191,8 @@ export const playerService = {
         }
         
         // If the API returned an error message, use that instead
-        if (error.response.data && error.response.data.message) {
-          errorMessage = error.response.data.message;
+        if (err.response.data && err.response.data.message) {
+          errorMessage = err.response.data.message;
         }
         
         return {
@@ -192,7 +204,7 @@ export const playerService = {
       // Generic error fallback
       return {
         status: 'error',
-        message: error.message || 'Failed to identify player. Please try again.'
+        message: err.message || 'Failed to identify player. Please try again.'
       };
     }
   }

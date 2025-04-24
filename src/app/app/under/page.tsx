@@ -21,7 +21,7 @@ export default function UnderConstructionPage() {
         </h1>
 
         <p className="text-slate-300 mb-6">
-          We're currently working on this feature. Check back soon for updates!
+          We&apos;re currently working on this feature. Check back soon for updates!
         </p>
 
         <div className="w-full bg-slate-700 h-2 rounded-full overflow-hidden">
